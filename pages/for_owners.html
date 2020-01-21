@@ -1,0 +1,37 @@
+
+<div class="content">
+    <div class="blue-stripe">
+        <div class="background">
+            <img src="../media/b3.jpg" alt="background" class="back-img">
+        </div>
+        <img class="homePic" src="media/2.png">
+        <div class="text">
+            <h1>Selling and leasing has never been easier</h1>
+            <p class="main-text">
+                Join thousands of other owners and keep it simple with Real Estate Agency.
+                Fill the form below and your property will be added to our database, which 
+                is one of the largest in US. Do you still have any questions? Feel free to 
+                contact us and our professionals will provide you with all needed information.
+            </p>
+        </div>
+    </div>
+    <div class="container container-filter">
+        <form action="#" class="form">
+            <select class="filters even" name="typeOfTransaction" required>
+                <option value="0" disabled selected>Type of transaction</option>
+                <option value="1">Sale</option>
+                <option value="2">Rent out</option>
+            </select>
+            <input id="address" class="filters wide" type="text" name="address" placeholder="Address" required>
+            <input id="zip" class="filters short" type="text" name="zipCode" placeholder="Zip" maxlength="5" required>
+            <input id="floors" class="filters even" type="number" name="numberOfFloors" placeholder="Number of floors" required>
+            <input id="rooms" class="filters even" type="number" name="numberOfRooms" placeholder="Number of rooms" required>
+            <input id="area" class="filters even" type="number" name="totalArea" placeholder="Total area" required>
+            <input id="price" class="filters even" type="number" name="price" placeholder="Price" required></input>
+            <textarea id="descr" class="filters description" name="propertyDescription" placeholder="Property description" rows="10" cols="30" required></textarea>
+            <input id="addPics" type="file" name="propertyPics" required>
+            <label for="addPics" class="button button-addPics">Add photo</label>
+        </form>
+        <button id="addProp" class="button button-filter">Add</button>
+     </div>
+</div>

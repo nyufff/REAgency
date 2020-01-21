@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    width: 100%;
+    font: normal 1em 'Baskervville', serif;
+    background-color: white;
+    color: black;
+}
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+/*====================Buttons========================*/
+.button {
+    font-size: 100%;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    outline: none;
+    color: rgb(82, 82, 72);
+    border: 1px solid rgb(180, 180, 173);
+    box-shadow: rgb(209, 209, 213) 0px 5px 15px;
+    border-radius: 0.25em;
+    transition: all 0.2s ease 0s;
+}
+.button-serv,
+.mod-button {
+    margin-top: 10%;
+    padding: 3% 10%;
+}
+.sq-serv:hover .button,
+.button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(180, 180, 173);
+}
+.button-rev {
+    width: 15%;
+    margin-bottom: 5%;
+    padding: 1%;
+}
+.button-filter {
+    padding: 1.5% 8%;
+    margin: 3% auto;
+}
+.button-addPics {
+    padding: 1% 2%;
+}
+.button-light-box {
+    padding: 1% 5%;
+    margin: 3% auto;
+
+}
+
+/*==================== Header ========================*/
+.header {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(222, 222, 210, 0);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+.logo {
+    width: 8%;
+}
+.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.nav-menu > li {
+    width: 130px;
+    height: 24px;
+    text-align: center;
+    border-right: 1.3px solid;
+}
+.nav-menu li:last-child {
+    border: none;
+}
+.link {
+    text-decoration: none;
+    color: black;
+}
+.link:hover {
+    color: white;
+}
+.drop-menu {
+    list-style: none;
+    visibility: hidden;
+    position: absolute;
+    text-align: left;
+    line-height: 2em;
+    background-color: rgb(222, 222, 210);
+    width: 100%;
+    top: 100%;
+    left: 0;
+    padding: 10%;
+}
+.nav-menu li:hover > .drop-menu {
+    visibility: visible;
+    transition-delay: .3s;
+}
+.reg {
+    height: 24px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+}
+
+/*=================== Registration ====================*/
+.modal-win {
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(224, 224, 212, 0.7);
+    z-index: 2;
+    cursor: pointer;
+}
+#openMod:target,
+#openMod:target .login {
+    visibility: visible;
+    -webkit-animation: fade .6s;
+    -moz-animation: fade .6s;
+    animation: fade .6s;
+}
+.modal-container{
+    width: 40%;
+    height: 60%;
+    max-width: 600px;
+    margin: 5% auto;
+    text-align: center;
+    border-radius: 0.25em;
+}
+.login,
+.register {
+    visibility: hidden;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 5% 0;
+}
+.form-group {
+    position: relative;
+    margin-top: 10%;
+    font-size: 110%;
+}
+.mod-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    color:rgb(119, 119, 116);
+    transition: 0.3s;
+}
+.mod-input {
+    width: 100%;
+    margin-bottom: 5%;
+    font-size: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(180, 180, 173);
+    outline: none;
+    transition: 0.3s;
+    padding-bottom: 1%;
+}
+.mod-input:focus {
+    border-bottom-width: 2px;
+}
+.mod-input:focus ~ .mod-label,
+.mod-input:not(:placeholder-shown) ~ .mod-label {
+    top: -18px;
+    font-size: 80%;
+}
+.switch {
+    color: rgb(14, 82, 114);
+}
+.log {
+    margin: 10% 0;
+    font-size: 110%;
+}
+
+
+/*=======================Slider=======================*/
+.slider {
+    width: 100%;
+    height: auto;
+}
+.main-video {
+    width: 100%;
+    object-fit: contain;
+}
+
+/*=======================Main=========================*/
+.content {
+    width: 100%;
+    text-align: center;
+}
+.container {
+    background-color: #e2effc;
+    padding: 1%;
+    cursor: auto;
+}
+.text {
+    width: 80%;
+    text-align: center;
+    margin: 3% auto;
+}
+.main-text {
+    font-size: 130%;
+    margin: 2% auto;
+    text-align: justify;
+}
+.line {
+    width: 20%;
+    margin: auto;
+    border: 2px solid rgb(180, 180, 173);
+}
+.line-wide {
+    width: 70%;
+    margin-top: 3.5%;
+}
+.box {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+.sq {
+    flex: 0 0 28%;
+    max-width: 500px;
+    cursor: pointer;
+    line-height: 150%;
+    font-size: 110%;
+    background-color: #fefefe;
+    box-shadow: rgb(209, 209, 213) 0px 5px 15px;
+    transition: all 300ms ease-in-out 0s;
+}
+.sq-serv {
+    width: 30%;
+    max-width: 500px;
+    text-align: center;
+    margin: 5% 0 ;
+    padding: 5% 1%;
+}
+.sq:hover {
+    transform: scale(1.1);
+}
+.h2 {
+    margin-bottom: 5%;
+}
+.homePic {
+    width: 5%;
+    height: auto;
+    margin-top: 3%;
+}
+.homePic-margin {
+    margin-top: 10%;
+}
+.background {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.back-img {
+    width: 100%;
+    object-fit: cover;
+}
+.light-box {
+    width: 100%;
+    font-size: 130%;
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    top: 35%;
+}
+
+/*=================== About us ===================*/
+.sq-rev {
+    padding: 2%;
+    margin: 3% auto;
+    text-align: justify;
+}
+.name {
+    text-align: right;
+    font-weight: bold;
+    font-size: 90%;
+}
+
+/*=================== Services ====================*/
+.house {
+    width: 15%;
+    height:15%;
+    align-self: center;
+    max-width: 200px;
+}
+.box:nth-of-type(3) {
+    background-color: #e2effc;
+}
+
+/*=================== For owners ==================*/
+.container-filter {
+    width: 60%;
+    padding: 3%;
+    margin: 5% auto;
+}
+.form {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: space-evenly;
+    justify-content: space-between;
+}
+.filters {
+    font-size: 100%;
+    font: normal 110% serif;
+    color: #757575;
+    border-radius: 0.25em;
+    box-shadow: rgb(209, 209, 213) 0px 5px 15px;
+    border: none;
+    outline: none;
+    padding: 1%;
+    margin: 2% 0;
+}
+.even {
+    width: 24%;
+}
+.wide {
+    width: 63%;
+}
+.short {
+    width: 10%;
+}
+.description {
+    width: 100%;
+}
+#addPics {
+    visibility: hidden;
+}
+.blue-stripe {
+    background-color: #e2effc;
+    padding-bottom: 3%;
+}
+
+/*=================== Buy/Rent ====================*/
+.box-prop {
+    margin: 7% 2%;
+}
+.container-sideFilter {
+    flex: 0 0 23%;
+    height: 600px;
+    max-width: 400px;
+    padding: 1%;
+    margin: 1%;
+}
+.prop {
+    flex: 0 0 75%;
+    padding: 1%;
+    max-height: 800px;
+    overflow: auto;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: space-between;
+    justify-content: space-evenly
+}
+.img-box {
+    width: 300px;
+    height: 300px;
+}
+.img-prop {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+.container-prop {
+    width: 95%;
+    margin-bottom: 1%;
+}
+
+
+/*=================== Contacts =======================*/
+.address {
+    text-align: left;
+    font-family: serif;
+    white-space: pre;
+    font-size: 120%;
+}
+.map-box {
+    width: 60%;
+    height: 500px;
+    margin: 3% auto;
+    z-index: -1;
+}
+.email::before {
+    font-family: FontAwesome;
+    content: "\f0e0";
+}
+
+/*====================Footer=========================*/
+.footer {
+    width: 100%;
+    height: 130px;
+    background-color: rgb(224, 224, 212);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-content: center;
+}
+.copy {
+    text-align: center;
+    font-size: 120%;
+    margin-top: 1%;
+}
+.share {
+    text-align: right;
+    margin-right: 2%;
+}
