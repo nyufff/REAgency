@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			window.localStorage.setItem('page_home', JSON.stringify(document.getElementById('home').innerHTML));
+			window.localStorage.setItem('page_login_page', JSON.stringify(document.getElementById('login_page').innerHTML));
+			window.localStorage.setItem('page_about_us', JSON.stringify(document.getElementById('about_us').innerHTML));
+			window.localStorage.setItem('page_services', JSON.stringify(document.getElementById('services').innerHTML));
+			window.localStorage.setItem('page_serv_owners', JSON.stringify(document.getElementById('serv_owners').innerHTML));
+			window.localStorage.setItem('page_serv_rent', JSON.stringify(document.getElementById('serv_rent').innerHTML));
+			window.localStorage.setItem('page_contacts', JSON.stringify(document.getElementById('contacts').innerHTML));
+		}
+    </script>
+
+
+    <script type="text/javascript">
+        let users = [
+            {id:1, name: 'Fred Flintstone', login: 'fred@example.com', pass: 'stone'},
+            {id:2, name: 'Marta Flintstone', login: 'marta@example.com', pass: 'love'},
+            {id:3, name: 'Tiranosaurus Rez', login: 'rex@example.com', pass: 'meat'},
+            {id:4, name: 'Bob Pants', login: 'bob@example.com', pass: 'pants'},
+        ];
+        window.localStorage.setItem('users', JSON.stringify(users));
+
+        let houses = {
+        	1 : {id: 1, address: '15, Holland drv, New York, 10023', price: 1000000, bedrooms: 2, bathrooms: 2, floors: 2, yearbuilt: 1994, description: 'dusfyhkjfkrgthfgthhfshjfkj'},
+        	2 : {id: 2, address: '16, Holland drv, New York, 10023', price: 2000000, bedrooms: 3, bathrooms: 3, floors: 2, yearbuilt: 2004, description: 'dhgfidshfhkgbfgbhfgjhfdkgh'},
+        	3 : {id: 3, address: '17, Holland drv, New York, 10023', price: 3000000, bedrooms: 5, bathrooms: 4, floors: 3, yearbuilt: 2008, description: 'owipoiroufjorg ghgfvfhkbvh'},
+        	4 : {id: 4, address: '18, Holland drv, New York, 10023', price: 4000000, bedrooms: 9, bathrooms: 5, floors: 4, yearbuilt: 2014, description: 'uyfhisedifyhrifguyuirgiurf'},
+        	5 : {id: 4, address: '18, Holland drv, New York, 10023', price: 4000000, bedrooms: 9, bathrooms: 5, floors: 4, yearbuilt: 2014, description: 'uyfhisedifyhrifguyuirgiurf'},
+        	6 : {id: 4, address: '18, Holland drv, New York, 10023', price: 4000000, bedrooms: 9, bathrooms: 5, floors: 4, yearbuilt: 2014, description: 'uyfhisedifyhrifguyuirgiurf'},
+        	7: {id: 4, address: '18, Holland drv, New York, 10023', price: 4000000, bedrooms: 9, bathrooms: 5, floors: 4, yearbuilt: 2014, description: 'uyfhisedifyhrifguyuirgiurf'},
+        	8 : {id: 4, address: '18, Holland drv, New York, 10023', price: 4000000, bedrooms: 9, bathrooms: 5, floors: 4, yearbuilt: 2014, description: 'uyfhisedifyhrifguyuirgiurf'},
+        	9 : {id: 4, address: '18, Holland drv, New York, 10023', price: 4000000, bedrooms: 9, bathrooms: 5, floors: 4, yearbuilt: 2014, description: 'uyfhisedifyhrifguyuirgiurf'},
+        	10 : {id: 4, address: '18, Holland drv, New York, 10023', price: 4000000, bedrooms: 9, bathrooms: 5, floors: 4, yearbuilt: 2014, description: 'uyfhisedifyhrifguyuirgiurf'},
+        };
+		window.localStorage.setItem('houses', JSON.stringify(houses));
+
+    </script>
+
+
+    <div style='display:none;'>
+    	
+********************* below are page templates **************************
+
+
+	    <div id="home">
+			<div class="slider">
+				<video class="main-video" src="media/main_video.mp4" autoplay loop muted></video>
+			</div>
+			<div class="content">
+				<div class="line line-wide"></div>
+				<div class="text">
+					<h1>Nobody does it better than Real Estate Agency.<br>So you'll never miss out</h1>
+				</div>
+				<div class="line"></div>
+				<div class="box box-serv">
+					<div class="sq sq-serv">
+						<h2 class="h2">Buy a home</h2>
+						<p>Find a perfect house which will satisfy all your needs. We know what a home is really worth, so let us help you find yours.</p>
+						<a href="#buy_rent"><button class="button button-serv">See more</button></a>
+					</div>
+					<div class="sq sq-serv">
+						<h2 class="h2">Sell or lease a home</h2 class="h2">
+						<p>Our huge database and professional team will help you to navigate the path to a successful trade</p>
+						<a href="#for_owners"><button class="button button-serv">See more</button></a>
+					</div>
+					<div class="sq sq-serv">
+						<h2 class="h2">Rent a home</h2 class="h2">
+						<p>A home is a lot more than just a place to live. It's also about how a place makes you feel. Find your property with us</p>
+						<a href="#buy_rent"><button class="button button-serv">See more</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	    <div id="login_page">
+			<div class="content">
+                <div class="container reg-container">
+                    <input id="log" name="switch" type="radio">
+					<input id="reg" name="switch" type="radio">
+                    <div class="login">
+                        <form action="#">
+                            <h1 class="form-title">Login into account</h1>
+                            <div class="form-group">
+                                <input type="email" class="mod-input" placeholder=" " required>
+                                <label class="mod-label">Your email</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="mod-input" placeholder=" " required>
+                                <label class="mod-label">Your password</label>
+                            </div>
+                            <button class="button mod-button">Login</button>
+                        </form>
+                        <span class="log">Don't have an accout? </span><label for="reg" class="switch">Register here</label>
+					</div>
+                    <div class="register">
+                        <form action="#">
+                            <h1 class="form-title">Create new account</h1>
+                            <div class="form-group">
+                                <input type="name" class="mod-input" placeholder=" " required>
+                                <label class="mod-label">Your name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="mod-input" placeholder=" " required>
+                                <label class="mod-label">Your email</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="mod-input" placeholder=" " required>
+                                <label class="mod-label">Your password</label>
+                            </div>
+                            <button class="button mod-button">Create</button>
+                        </form>
+                        <span class="log">Do you alredy have an account? </span> <label for="log" class="switch">Login here</label>
+					</div>
+                </div>
+            </div>
+        </div>
+
+	    <div id="about_us">
+		    <div class="content">
+				<img class="homePic homePic-margin" src="media/3.png">
+				<div class="text">
+					<h1>We have been working successfully for you since 2000</h1>
+					<p class="main-text">
+						Real Estate Agency has the most extensive and daily updated database in US. 
+						Almost unlimited choice allows us to offer each of our customers the best 
+						options for buying, selling or leasing property. Long experience in the market, 
+						quality and reliability of services, professionalism of our employees, and 
+						assistance in solving a full range of issues related to real estate transactions 
+						have ensured our agency the status of a reliable partner among our customers.
+					</p>
+					<p class="main-text">
+						Our stuff is a united team of professionals and like-minded people, so dedication 
+						to the common cause is combined with an individual desire for self-realization, 
+						which serves as a source of dynamic development for the whole company.
+					</p>
+					<p class="main-text">
+						Our mission consists in providing highly professional real estate services that 
+						guarantee our customers maximum efficiency and security of any real estate 
+						operations. Moreover, we are striving for expanding the number of customers and 
+						establishing trustful partnership with them, for each customer to recommend the 
+						company's services to their friends, relatives and colleagues.
+					</p>
+				</div>
+				<div class="background">
+					<img src="media/b2.jpg" alt="background" class="back-img">
+				</div>
+				<img class="homePic" src="media/1.png">
+				<div class="reviews">
+					<h2>Reviews</h2>
+					<div class="box box-rev">
+						<div class="sq sq-rev">
+							<p> Real Estate Agency went above and beyond. We had such a fantastic experience.
+								That was the one thing that really stood out: the personal touch.
+							</p>
+							<p class="name">- David M. -</p>
+						</div>
+						<div class="sq sq-rev">
+							<p> Very easy process and helpful people. Would definitely recommend that 
+								anyone interested in selling their home check with Real Estate Agency first.
+							</p>
+							<p class="name">- Joanna B -</p>
+						</div>
+						<div class="sq sq-rev">
+							<p> Everything has been great. From the online experience to the personal contacts, 
+								Their team has truly made a fast and unplanned move to our dream house possible.
+							</p>
+							<p class="name">- Laura R. -</p>
+						</div>
+					</div>
+					<button class="button button-rev">Reed more</button>
+				</div>
+			</div>
+		</div>
+	    	
+	    <div id="services">
+			<div class="content">
+				<div  class="background">
+					<img src="media/b1.jpg" alt="background" class="back-img">
+					<div class="light-box">
+						<h1>We’ll help you find a place you’ll love.</h1>
+						<button class="button button-light-box">Get started</button>
+					</div>
+				</div >
+				<div class="box">
+					<div class="sq-serv">
+						<h2 class="h2">Buy or rent a home</h2>
+						<p>Find a perfect house which will satisfy all your needs. We know what a home is really worth, so let us help you find yours.</p>
+					</div>
+					<img src="media/a.png" class="house">
+				</div>
+				<div class="box">
+					<img src="media/b.png" class="house">
+					<div class="sq-serv">
+						<h2 class="h2">Property management</h2 class="h2">
+						<p>Our company provides managment of property and take care about renovation, equipment and maintenance.</p>
+					</div>
+				</div>
+				<div class="box">
+					<div class="sq-serv">
+						<h2 class="h2">Sell or lease a home</h2 class="h2">
+						<p>Our huge database and professional team will help you to navigate the path to a successful trade</p>
+					</div>
+					<img src="media/c.png" class="house">
+				</div>
+			</div>
+		</div>
+
+		<div id="serv_rent">
+			<div class="content">
+				<div class="box box-prop">
+					<div class="container container-sideFilter">
+						<form action="#" class="form">
+							<select class="filters" name="typeOfTransaction" required>
+								<option value="0" disabled selected>Type of transaction</option>
+								<option value="1">Sale</option>
+								<option value="2">Rent out</option>
+							</select>
+							<select class="filters" name="numberOfFloors" required>
+								<option value="0" disabled selected>Number of floors</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</form>
+						<button class="button filters-button">Search</button>
+					</div>
+					<div class="prop">
+						<template id="propTempl">
+							<div class="img-box">
+								<img src="media/house1.jpg" class="img-prop">
+							</div>
+							<div class="text-box">
+								<h2 class="address"></h2>
+								<span class="zip"></span>
+								<span class="floors"></span>
+								<span class="bedrooms"></span>
+								<span class="bathrooms"></span>
+								<span class="area"></span>
+								<span class="year"></span>
+								<h3 class="price"></h3>
+								<p class="descr"></p>
+							</div>
+						</template>
+					</div>
+					<div class="pagination-box">
+						<ol class="pagin">
+							<li class="button button-pagin"></li>
+							<li class="button button-pagin">
+								<a class="link" href="">1</a>
+							</li>
+							<li class="button button-pagin">
+								<a class="link" href="">2</a>
+							</li>
+							<li class="button button-pagin">
+								<a class="link" href="">3</a>
+							</li>
+							<li class="button button-pagin">
+								<a class="link" href="">4</a>
+							</li>
+							<li class="button button-pagin">
+								<a class="link" href="">5</a>
+							</li>
+							<li class="button button-pagin">
+								<a class="link" href=""></a>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="serv_owners">
+			<div class="content">
+				<div class="blue-stripe">
+					<div class="background">
+						<img src="media/b3.jpg" alt="background" class="back-img">
+					</div>
+					<img class="homePic" src="media/2.png">
+					<div class="text">
+						<h1>Selling and leasing has never been easier</h1>
+						<p class="main-text">
+							Join thousands of other owners and keep it simple with Real Estate Agency.
+							Fill the form below and your property will be added to our database, which 
+							is one of the largest in US. Do you still have any questions? Feel free to 
+							contact us and our professionals will provide you with all needed information.
+						</p>
+					</div>
+				</div>
+				<div class="container container-filter">
+					<form action="#" class="form">
+						<select class="filters even" name="typeOfTransaction" required>
+							<option value="0" disabled selected>Type of transaction</option>
+							<option value="1">Sale</option>
+							<option value="2">Rent out</option>
+						</select>
+						<input id="address" class="filters wide" type="text" name="address" placeholder="Address" required>
+						<input id="zip" class="filters short" type="text" name="zipCode" placeholder="Zip" maxlength="5" required>
+						<input id="floors" class="filters even" type="number" name="numberOfFloors" placeholder="Number of floors" required>
+						<input id="rooms" class="filters even" type="number" name="numberOfRooms" placeholder="Number of rooms" required>
+						<input id="area" class="filters even" type="number" name="totalArea" placeholder="Total area" required>
+						<input id="price" class="filters even" type="number" name="price" placeholder="Price" required></input>
+						<textarea id="descr" class="filters description" name="propertyDescription" placeholder="Property description" rows="10" cols="30" required></textarea>
+						<input id="addPics" type="file" name="propertyPics" required>
+						<label for="addPics" class="button button-addPics">Add photo</label>
+					</form>
+					<button id="addP" class="button button-filter">Add</button>
+				 </div>
+			</div>
+		</div>
+
+		<div id="contacts">
+			<div class="content">
+				<div class="text">
+					<img class="homePic homePic-margin" src="media/5.png">
+					<h1>Contact us</h1>
+					<p class="address">
+						3217 Eastlake Ave E, of 201
+						Seattle
+						WA 98102
+			
+						Tel.: 206 1-234-567
+			
+						<span class="email"> info@realestag.com</span>
+			
+						Timetable: Mon-Fri 9am - 9pm
+					</p>
+					<iframe class="map-box" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2687.715040117792!2d-122.32416538481796!3d47.651104092896446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549014faa09ab3ed%3A0x8047a64747307564!2s3217%20Eastlake%20Ave%20E%2C%20Seattle%2C%20WA%2098102%2C%20USA!5e0!3m2!1sen!2sua!4v1579053753591!5m2!1sen!2sua" 
+					frameborder="0" style="border:0;" allowfullscreen="">
+					</iframe>
+				</div>
+			</div>
+		</div>
+
+  	</div>
+</body>
+</html>
