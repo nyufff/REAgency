@@ -18,7 +18,26 @@
     </script>
 
 
-    <script type="text/javascript">
+	<script type="text/javascript">
+	
+		let reviews = [
+			{rev: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', name: 'Barbara S.'},
+			{rev:'Duis convallis convallis tellus id interdum velit laoreet id. Arcu non odio euismod lacinia at quis risus.', name: 'Noah L.'},
+			{rev:'Volutpat sed cras ornare arcu dui vivamus. Turpis nunc eget lorem dolor. Ornare aenean euismod elementum nisi.', name: 'Rowena C.'},
+			{rev:'Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Dictumst quisque sagittis purus sit amet volutpat consequat.', name: 'Jackqueline D.'},
+			{rev:'Ornare aenean euismod elementum nisi. Ullamcorper eget nulla facilisi etiam dignissim diam. Nec dui nunc mattis enim ut tellus elementum.', name: 'Babette W.'},
+			{rev:'Tortor at risus viverra adipiscing at in tellus integer. Eu tincidunt tortor aliquam nulla facilisi cras. Duis at consectetur lorem donec massa sapien.', name: 'Kary P.'},
+			{rev:'Eget felis eget nunc lobortis mattis aliquam. Fermentum posuere urna nec tincidunt praesent semper. Tortor condimentum lacinia quis vel eros.', name: 'Tyler R.'},
+			{rev:'Vestibulum morbi blandit cursus risus. Velit ut tortor pretium viverra suspendisse potenti nullam ac. Nisl purus in mollis nunc sed id semper.', name: 'Jerry S.'},
+			{rev:'Duis ultricies lacus sed turpis tincidunt. Egestas diam in arcu cursus euismod quis viverra. Porttitor leo a diam sollicitudin tempor id eu nisl.', name: 'Michell P.'},
+			{rev:'Id leo in vitae turpis massa sed elementum tempus egestas. Etiam tempor orci eu lobortis elementum nibh. Pulvinar elementum integer enim neque.', name: 'Ernesto C.'},
+			{rev:'Consequat id porta nibh venenatis cras. Tellus cras adipiscing enim eu turpis egestas pretium aenean. Vulputate sapien nec sagittis aliquam.', name: 'Bruno W.'},
+			{rev:'Placerat vestibulum lectus mauris ultrices eros in. Bibendum est ultricies integer quis auctor elit sed. At augue eget arcu dictum.', name: 'Darcy M.'},
+			{rev:'Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Pulvinar pellentesque habitant morbi tristique senectus et netus et malesuada.', name: 'Selma M.'},
+		];
+		window.localStorage.setItem('reviews', JSON.stringify(reviews));
+
+
         let users = [
             {id:1, name: 'Fred Flintstone', login: 'fred@example.com', pass: 'stone'},
             {id:2, name: 'Marta Flintstone', login: 'marta@example.com', pass: 'love'},
@@ -88,14 +107,14 @@
                         <form action="#">
                             <h1 class="form-title">Login into account</h1>
                             <div class="form-group">
-                                <input type="email" class="mod-input" placeholder=" " required>
-                                <label class="mod-label">Your email</label>
+                                <input type="email" class="reg-input" placeholder=" " required>
+                                <label class="reg-label">Your email</label>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="mod-input" placeholder=" " required>
-                                <label class="mod-label">Your password</label>
+                                <input type="password" class="reg-input" placeholder=" " required>
+                                <label class="reg-label">Your password</label>
                             </div>
-                            <button class="button mod-button">Login</button>
+                            <button class="button reg-button">Login</button>
                         </form>
                         <span class="log">Don't have an accout? </span><label for="reg" class="switch">Register here</label>
 					</div>
@@ -103,18 +122,26 @@
                         <form action="#">
                             <h1 class="form-title">Create new account</h1>
                             <div class="form-group">
-                                <input type="name" class="mod-input" placeholder=" " required>
-                                <label class="mod-label">Your name</label>
+                                <input type="name" class="reg-input" placeholder=" " required>
+                                <label class="reg-label">Your name</label>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="mod-input" placeholder=" " required>
-                                <label class="mod-label">Your email</label>
+                                <input type="email" class="reg-input" placeholder=" " required>
+                                <label class="reg-label">Your email</label>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="mod-input" placeholder=" " required>
-                                <label class="mod-label">Your password</label>
-                            </div>
-                            <button class="button mod-button">Create</button>
+                                <input type="password" class="reg-input" placeholder=" " required>
+                                <label class="reg-label">Your password</label>
+							</div>
+							<div class="form-group">
+								<input type="checkbox" id="ownerCheck">
+								<label for="ownerCheck">I am a landlord or industry professional</label>
+								<div class="form-group ownerInfo">
+									<label class="reg-label">Your phone</label>
+									<input type="tel" class="reg-phone" pattern="^\+1\s(\d{3}\s){2}\d{4}$" placeholder="+1 XXX XXX XXXX" required>
+								</div>
+							</div>
+                            <button class="button reg-button">Create</button>
                         </form>
                         <span class="log">Do you alredy have an account? </span> <label for="log" class="switch">Login here</label>
 					</div>
@@ -124,7 +151,7 @@
 
 	    <div id="about_us">
 		    <div class="content">
-				<img class="homePic homePic-margin" src="media/3.png">
+				<img class="homePic" src="media/3.png" alt="house">
 				<div class="text">
 					<h1>We have been working successfully for you since 2000</h1>
 					<p class="main-text">
@@ -151,8 +178,8 @@
 				<div class="background">
 					<img src="media/b2.jpg" alt="background" class="back-img">
 				</div>
-				<img class="homePic" src="media/1.png">
 				<div class="reviews">
+					<img class="homePic" src="media/1.png" alt="house">
 					<h2>Reviews</h2>
 					<div class="box box-rev">
 						<div class="sq sq-rev">
@@ -181,7 +208,7 @@
 	    	
 	    <div id="services">
 			<div class="content">
-				<div  class="background">
+				<div class="background">
 					<img src="media/b1.jpg" alt="background" class="back-img">
 					<div class="light-box">
 						<h1>We’ll help you find a place you’ll love.</h1>
@@ -234,22 +261,22 @@
 						<button class="button filters-button">Search</button>
 					</div>
 					<div class="prop">
-						<template id="propTempl">
+						<div id="propTempl">
 							<div class="img-box">
 								<img src="media/house1.jpg" class="img-prop">
 							</div>
 							<div class="text-box">
-								<h2 class="address"></h2>
-								<span class="zip"></span>
-								<span class="floors"></span>
-								<span class="bedrooms"></span>
-								<span class="bathrooms"></span>
-								<span class="area"></span>
-								<span class="year"></span>
-								<h3 class="price"></h3>
-								<p class="descr"></p>
+								<h2 class="address">dhfksdjhfkjdhvk</h2>
+								<span class="zip">12345</span>
+								<span class="floors">5</span>
+								<span class="bedrooms">5</span>
+								<span class="bathrooms">2</span>
+								<span class="area">78</span>
+								<span class="year">2010</span>
+								<h3 class="price">12345678</h3>
+								<p class="descr">Kjhkhsdfkjshdfkj jdfsjdhfkjshdf jsdhfkhdkfhd dksjfhkshdfk</p>
 							</div>
-						</template>
+						</div>
 					</div>
 					<div class="pagination-box">
 						<ol class="pagin">
@@ -283,7 +310,7 @@
 				<div class="blue-stripe">
 					<div class="background">
 						<img src="media/b3.jpg" alt="background" class="back-img">
-					</div>
+					</div>	
 					<img class="homePic" src="media/2.png">
 					<div class="text">
 						<h1>Selling and leasing has never been easier</h1>
@@ -319,19 +346,22 @@
 
 		<div id="contacts">
 			<div class="content">
+				<img class="homePic" src="media/4.png">
 				<div class="text">
-					<img class="homePic homePic-margin" src="media/5.png">
 					<h1>Contact us</h1>
 					<p class="address">
 						3217 Eastlake Ave E, of 201
 						Seattle
 						WA 98102
 			
-						Tel.: 206 1-234-567
+						Tel.: +1 206 123 4567
+						Tel.: +1 206 456 7890
 			
 						<span class="email"> info@realestag.com</span>
 			
-						Timetable: Mon-Fri 9am - 9pm
+						Timetable:
+						Mon-Fri 9am - 9pm
+						Sut-Sun 12pm - 6pm
 					</p>
 					<iframe class="map-box" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2687.715040117792!2d-122.32416538481796!3d47.651104092896446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549014faa09ab3ed%3A0x8047a64747307564!2s3217%20Eastlake%20Ave%20E%2C%20Seattle%2C%20WA%2098102%2C%20USA!5e0!3m2!1sen!2sua!4v1579053753591!5m2!1sen!2sua" 
 					frameborder="0" style="border:0;" allowfullscreen="">

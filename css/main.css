@@ -9,7 +9,10 @@ html {
     overflow-x: hidden;
 }
 body {
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
     font: normal 1em 'Baskervville', serif;
     background-color: white;
     color: black;
@@ -32,13 +35,22 @@ body {
     border-radius: 0.25em;
     transition: all 0.2s ease 0s;
 }
+.button-search {
+    width: 20px;
+    height: 20px;
+    text-decoration: none;
+    color: black;
+    position: fixed;
+    right: 22%;
+
+}
 .button-serv {
     margin-top: 10%;
     padding: 3% 10%;
 }
-.mod-button {
+.reg-button {
     padding: 3% 10%;
-    margin: 5% 0 10% 0;
+    margin: 8% 0;
 }
 .sq-serv:hover .button,
 .button:hover {
@@ -125,19 +137,45 @@ body {
 }
 .nav-menu li:hover > .drop-menu {
     visibility: visible;
-    transition-delay: .3s;
 }
-.reg {
-    height: 24px;
+.search-bar {
     display: flex;
     flex-flow: row nowrap;
-    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    background: none;
+    border-radius: .25em;
+    padding: .5% 1%;
+    position: fixed;
+    right: 2%;
+}
+.search-text {
+    display: none;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    font: normal 110% serif;
+    background-color: transparent;
+}
+.search-bar:hover {
+    width: 22%;
+    background-color: white;
+    transition-duration: .3s;
+}
+.search-bar:hover > .search-text {
+    display: block;
+    width: 95%;
+}
+.reg {
+    line-height: 5em;
+}
+.icon-reg {
+    padding-top: 3%;
 }
 
 /*=======================Slider=======================*/
 .slider {
     width: 100%;
-    height: auto;
 }
 .main-video {
     width: 100%;
@@ -145,6 +183,9 @@ body {
 }
 
 /*=======================Main=========================*/
+main {
+    overflow: auto;
+}
 .content {
     width: 100%;
     text-align: center;
@@ -157,11 +198,11 @@ body {
 .text {
     width: 80%;
     text-align: center;
-    margin: 3% auto;
+    margin: .5% auto;
 }
 .main-text {
     font-size: 130%;
-    margin: 2% auto;
+    margin: 1% auto;
     text-align: justify;
 }
 .line {
@@ -195,7 +236,7 @@ body {
     max-width: 500px;
     text-align: center;
     margin: 5% 0 ;
-    padding: 5% 1%;
+    padding: 3% 1%;
 }
 .sq:hover {
     transform: scale(1.1);
@@ -205,11 +246,7 @@ body {
 }
 .homePic {
     width: 5%;
-    height: auto;
-    margin-top: 3%;
-}
-.homePic-margin {
-    margin-top: 10%;
+    margin-top: 7%;
 }
 .background {
     width: 100%;
@@ -218,21 +255,17 @@ body {
 }
 .back-img {
     width: 100%;
-    object-fit: cover;
-}
-.light-box {
-    width: 100%;
-    font-size: 130%;
-    position: absolute;
-    background-color: transparent;
-    color: white;
-    top: 35%;
+    object-fit: contain;
 }
 
 /*=================== About us ===================*/
+.reviews {
+    width: 90%;
+    margin: 1% auto;
+}
 .sq-rev {
     padding: 2%;
-    margin: 3% auto;
+    margin: 5% auto;
     text-align: justify;
 }
 .name {
@@ -243,13 +276,21 @@ body {
 
 /*=================== Services ====================*/
 .house {
-    width: 15%;
-    height:15%;
+    width: 12%;
+    height:12%;
     align-self: center;
     max-width: 200px;
 }
 .box:nth-of-type(3) {
     background-color: #e2effc;
+}
+.light-box {
+    width: 100%;
+    font-size: 130%;
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    top: 35%;
 }
 
 /*=================== For owners ==================*/
@@ -261,7 +302,7 @@ body {
 .form {
     display: flex;
     flex-flow: row wrap;
-    align-content: space-evenly;
+    align-items: space-evenly;
     justify-content: space-between;
 }
 .filters {
@@ -297,14 +338,13 @@ body {
 
 /*=================== Buy/Rent ====================*/
 .box-prop {
-    margin: 7% 2%;
+    margin: 7% 0;
 }
 .container-sideFilter {
-    flex: 0 0 23%;
-    height: 600px;
+    flex: 0 0 21%;
     max-width: 400px;
     padding: 1%;
-    margin: 1%;
+    margin: 1% 2%;
 }
 .prop {
     flex: 0 0 75%;
@@ -313,7 +353,7 @@ body {
     overflow: auto;
     display: flex;
     flex-flow: row wrap;
-    align-content: space-between;
+    align-items: space-between;
     justify-content: space-evenly;
     font-family: serif;
 }
@@ -370,38 +410,18 @@ body {
     content: "\f0e0";
 }
 
-/*====================Footer=========================*/
-.footer {
-    width: 100%;
-    height: 130px;
-    background-color: rgb(224, 224, 212);
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-around;
-    align-content: center;
-}
-.copy {
-    text-align: center;
-    font-size: 120%;
-    margin-top: 1%;
-}
-.share {
-    text-align: right;
-    margin-right: 2%;
-}
-
 /*=================== Registration ====================*/
 .reg-container {
     width: 40%;
+    height: auto;
     max-width: 600px;
-    margin: 8% auto;
+    margin: 10% auto;
     text-align: center;
     border-radius: 0.25em;
 }
 .login,
 .register {
     width: 100%;
-    height: 100%;
     padding: 5%;
 }
 .register {
@@ -409,10 +429,10 @@ body {
 }
 .form-group {
     position: relative;
-    margin-top: 10%;
+    margin-top: 8%;
     font-size: 110%;
 }
-.mod-label {
+.reg-label {
     position: absolute;
     top: 0;
     left: 0;
@@ -420,7 +440,7 @@ body {
     color:rgb(119, 119, 116);
     transition: 0.3s;
 }
-.mod-input {
+.reg-input {
     width: 100%;
     margin-bottom: 1%;
     font-size: 100%;
@@ -431,11 +451,59 @@ body {
     transition: 0.3s;
     padding-bottom: 1%;
 }
-.mod-input:focus {
+.reg-phone {
+    font-size: 80%;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid rgb(180, 180, 173);
+    outline: none;
+    padding: 1%;
+    margin-left: 2%;
+}
+.ownerInfo {
+    width: 100%;
+    font-size: 100%;
+    display: none;
+}
+#ownerCheck {
+    display: none;
+}
+#ownerCheck + label {
+    position: relative;
+}
+#ownerCheck + label::before {
+    content: "";
+    color: transparent;
+    display: inline-block;
+    border: 1px solid rgb(180, 180, 173);
+    outline: none;
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    left: -10%;
+}
+#ownerCheck + label::after {
+    content: "";
+    display: inline-block;
+    height: 6px;
+    width: 11px;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 25%;
+    left: -9%;
+    display: none;
+}
+#ownerCheck:checked + label::after,
+#ownerCheck:checked ~ .ownerInfo {
+    display: inline-block;
+}
+.reg-input:focus {
     border-bottom-width: 2px;
 }
-.mod-input:focus ~ .mod-label,
-.mod-input:not(:placeholder-shown) ~ .mod-label {
+.reg-input:focus ~ .reg-label,
+.reg-input:not(:placeholder-shown) ~ .reg-label {
     top: -40%;
     font-size: 80%;
 }
@@ -457,4 +525,45 @@ body {
 }
 #reg:checked ~ .register {
     display: block;
+}
+
+/*====================Footer=========================*/
+.footer {
+    width: 100%;
+    background-color: rgb(224, 224, 212);
+    display: flex;
+    flex: 0 0 18%;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.copy {
+    font: normal 110% serif;
+}
+.share {
+    width: 100%;
+    margin-top: .5%;
+}
+.icon-share {
+    margin-right: 4%;
+}
+.icon-share:last-child {
+    margin-right: 0;
+}
+.icon-share:hover {
+    transform: scale(1.3);
+}
+.hide {
+    position: absolute;
+    text-align: center;
+    background-color: rgb(222, 222, 210);
+    border-radius: 0.25em;
+    bottom: -1%;
+    right: 5%;
+    padding: 0 2%;
+    display: none;
+}
+.hide::before {
+    font: normal 300% FontAwesome;
+    content: '\f106';
 }
