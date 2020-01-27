@@ -141,7 +141,6 @@ header {
     position: absolute;
     text-align: left;
     line-height: 2em;
-    background-color: rgb(222, 222, 210);
     width: 100%;
     top: 100%;
     left: 0;
@@ -149,6 +148,8 @@ header {
 }
 .nav-menu li:hover > .drop-menu {
     visibility: visible;
+    background-color: rgba(222, 222, 210, 1);
+    transition-duration: .3s;
 }
 .reg {
     line-height: 5em;

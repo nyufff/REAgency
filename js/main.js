@@ -21,7 +21,9 @@
 	});
 	
 class Router {
+
 	constructor() {
+
 		this._dynamicPages = {'houses': 'houses'};
 		this._staticPagesLinks = {'': 'page_home', 'home': 'page_home', 'about_us': 'page_about_us',
 								'services': 'page_services', 'serv_rent': 'page_serv_rent',
@@ -31,7 +33,7 @@ class Router {
 							'page_serv_rent': 'Buy/Rent', 'page_serv_owners': 'For Owners', 
 							'page_prop_manag': 'Property Management', 'page_contacts': 'Contact Us',
 							'page_login_page': "Log In"};
-							
+
 		let url = window.location.href;
 		if (url.indexOf('?') !== -1) {
 			this.path = url.substring(0, url.indexOf('?'));
@@ -41,28 +43,40 @@ class Router {
 		this.catchLinks();
 	}
 
+	get staticPages() {
+		return this._staticPagesLinks;
+	}
+
+	get dynamicPages() {
+		return this._dynamicPages;
+	}
+
+	catchLinks() {
+
+	}
+
+	getPage() {
+
+	}
+	
+	parseURL(url) {
+		let params = {};
+		if (url.indexOf('?') !== -1 && url.indexOf('=') !== -1) {
+			let paramsString = url.substring(url.indexOf('?') + 1);
+			let pairs = paramsString.split('&');
+			pairs.forEach (function(el) {
+				let kv = el.split('=');
+				params[kv[0]] = kv[1];
+			});
+		}
+		return params;
+	}
+	
 }
 
+
 window.onload = function() {
-
-	// Router
-	let home =  JSON.parse(window.localStorage.getItem('page_home'));
-	document.getElementById('main').innerHTML = home;
-
-	Array.from(document.querySelectorAll("nav a")).forEach(link => {
-	    link.addEventListener('click', function(event) {
-	        event.preventDefault();
-	        let content = '404 Page not found';
-	        if (typeof event.target.dataset.content != 'undefined') {
-	        	try {
-	        		content = JSON.parse(window.localStorage.getItem(event.target.dataset.content));
-	        	} catch (e) {
-	        		//do nothing
-	        	}
-	        } 
-	    document.getElementById('main').innerHTML = content;
-	    });
-	});
+	let router = new Router();
 }
 
 
