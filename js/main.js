@@ -52,7 +52,16 @@ class Router {
 	}
 
 	catchLinks() {
-
+		let router = this;	
+		Array.from(document.querySelectorAll("a.innerLink")).forEach(link => {
+		    link.addEventListener('click', function(event) {
+		    	event.preventDefault();
+		    	let page = router.getPage(event.currentTarget.href);
+	    		document.getElementById('main').innerHTML = page['content'];
+	    		document.title = page['title'];
+				window.history.replaceState({}, "Title", event.currentTarget.href);
+		    });
+		});	
 	}
 
 	getPage(url) {
@@ -108,6 +117,9 @@ class Router {
 
 window.onload = function() {
 	let router = new Router();
+	let page = router.getPage(window.location.href);
+	document.getElementById('main').innerHTML = page['content'];
+	document.title = page['title'];
 }
 
 
