@@ -55,8 +55,28 @@ class Router {
 
 	}
 
-	getPage() {
+	getPage(url) {
+		let params = this.parseURL(url);
+		let title = 'Page Not Found';
+		let content = '404. Page is not found';
 
+		if (typeof params['p'] == 'undefined') {
+			params['p'] = '';
+		}
+
+		if (typeof this._staticPagesLinks[params['p']] != 'undefined') {
+			content = JSON.parse(window.localStorage.getItem(this._staticPagesLinks[params['p']]));
+			title = this._pagesTitles[this._staticPagesLinks[params['p']]];
+		}
+		else if (params['p'] == 'houses_sale') {
+			content = this.getHouses(params);
+			title = 'Houses for sale';
+		}
+		else if (params['p'] == 'search') {
+			content = this.search();
+			title = 'Search';
+		}
+		return {content: content, title: title};
 	}
 	
 	parseURL(url) {
@@ -71,7 +91,18 @@ class Router {
 		}
 		return params;
 	}
-	
+
+	createURL(params) {
+		let url = this.path;
+		if (typeof params == 'object') {
+			url = url + '?';
+			for (let key in params) {
+				url = url + key + '=' + params[key] + '&';
+			}
+			url = url.slice(0, -1);
+		}
+		return url;
+	}
 }
 
 
