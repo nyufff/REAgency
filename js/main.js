@@ -1,41 +1,47 @@
 
-// Header-footer fade
-
 	jQuery(document).ready(function($) {
 
 		$(function() {
 			$(main).scroll(function() {
 				if ($(main).scrollTop() != 0) {
-					$('.header').css({"background-color": "rgba(222, 222, 210, 1)", "transition-duration": "1s"});
 					$('.hide').css({"display": "block"});
                     $('.footer').css({"display": "none"});
 				}
 				else {
-					$('.header').css({"background-color": "rgba(222, 222, 210, 0)", "transition-duration": "1s"});
 					$('.footer').css({"display": "flex"});
                     $('.hide').css({"display": "none"});
 				}
 			});
-	
-			$('.header').hover(
+			$('.hide').click(
 				function() {
-					if ($(window).scrollTop() == 0) {
-						$('.header').css({"background-color": "rgba(222, 222, 210, 1)", "transition-duration": "1s"});
-					}
-				},
-				function() {
-					if ($(main).scrollTop() == 0) {
-						$('.header').css({"background-color": "rgba(222, 222, 210, 0)", "transition-duration": "1s"})
-					}
+					$('.footer').css({"display": "flex"});
+					$('.hide').css({"display": "none"});
 				});
-				$('.hide').click(
-					function() {
-						$('.footer').css({"display": "flex"});
-						$('.hide').css({"display": "none"});
-					});
-			});	
+		});	
 	});
 	
+class Router {
+	constructor() {
+		this._dynamicPages = {'houses': 'houses'};
+		this._staticPagesLinks = {'': 'page_home', 'home': 'page_home', 'about_us': 'page_about_us',
+								'services': 'page_services', 'serv_rent': 'page_serv_rent',
+								'serv_owners': 'page_serv_owners', 'prop_manag': 'page_prop_manag',
+								'contacts': 'page_contacts', 'login_page': 'page_login_page'};
+		this._pagesTitles = {'page_home': 'Home', 'page_about_us': 'About Us', 'page_services': 'Services',
+							'page_serv_rent': 'Buy/Rent', 'page_serv_owners': 'For Owners', 
+							'page_prop_manag': 'Property Management', 'page_contacts': 'Contact Us',
+							'page_login_page': "Log In"};
+							
+		let url = window.location.href;
+		if (url.indexOf('?') !== -1) {
+			this.path = url.substring(0, url.indexOf('?'));
+		} else {
+			this.path = url;
+		}
+		this.catchLinks();
+	}
+
+}
 
 window.onload = function() {
 
@@ -57,11 +63,6 @@ window.onload = function() {
 	    document.getElementById('main').innerHTML = content;
 	    });
 	});
-
-	// Fill templates with property
-
-	// Fill reviews
-
 }
 
 

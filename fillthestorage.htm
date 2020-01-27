@@ -69,32 +69,12 @@
 
 
 	    <div id="home">
-			<div class="slider">
-				<video class="main-video" src="media/main_video.mp4" autoplay loop muted></video>
-			</div>
 			<div class="content">
 				<div class="line line-wide"></div>
 				<div class="text">
 					<h1>Nobody does it better than Real Estate Agency.<br>So you'll never miss out</h1>
 				</div>
 				<div class="line"></div>
-				<div class="box box-serv">
-					<div class="sq sq-serv">
-						<h2 class="h2">Buy a home</h2>
-						<p>Find a perfect house which will satisfy all your needs. We know what a home is really worth, so let us help you find yours.</p>
-						<a href="#buy_rent"><button class="button button-serv">See more</button></a>
-					</div>
-					<div class="sq sq-serv">
-						<h2 class="h2">Sell or lease a home</h2 class="h2">
-						<p>Our huge database and professional team will help you to navigate the path to a successful trade</p>
-						<a href="#for_owners"><button class="button button-serv">See more</button></a>
-					</div>
-					<div class="sq sq-serv">
-						<h2 class="h2">Rent a home</h2 class="h2">
-						<p>A home is a lot more than just a place to live. It's also about how a place makes you feel. Find your property with us</p>
-						<a href="#buy_rent"><button class="button button-serv">See more</button></a>
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -175,9 +155,6 @@
 						company's services to their friends, relatives and colleagues.
 					</p>
 				</div>
-				<div class="background">
-					<img src="media/b2.jpg" alt="background" class="back-img">
-				</div>
 				<div class="reviews">
 					<img class="homePic" src="media/1.png" alt="house">
 					<h2>Reviews</h2>
@@ -208,17 +185,11 @@
 	    	
 	    <div id="services">
 			<div class="content">
-				<div class="background">
-					<img src="media/b1.jpg" alt="background" class="back-img">
-					<div class="light-box">
-						<h1>We’ll help you find a place you’ll love.</h1>
-						<button class="button button-light-box">Get started</button>
-					</div>
-				</div >
 				<div class="box">
 					<div class="sq-serv">
 						<h2 class="h2">Buy or rent a home</h2>
 						<p>Find a perfect house which will satisfy all your needs. We know what a home is really worth, so let us help you find yours.</p>
+						<button class="button button-serv">See more</button>
 					</div>
 					<img src="media/a.png" class="house">
 				</div>
@@ -227,12 +198,14 @@
 					<div class="sq-serv">
 						<h2 class="h2">Property management</h2 class="h2">
 						<p>Our company provides managment of property and take care about renovation, equipment and maintenance.</p>
+						<button class="button button-serv">See more</button>
 					</div>
 				</div>
 				<div class="box">
 					<div class="sq-serv">
 						<h2 class="h2">Sell or lease a home</h2 class="h2">
 						<p>Our huge database and professional team will help you to navigate the path to a successful trade</p>
+						<button class="button button-serv">See more</button>
 					</div>
 					<img src="media/c.png" class="house">
 				</div>
@@ -307,20 +280,15 @@
 
 		<div id="serv_owners">
 			<div class="content">
-				<div class="blue-stripe">
-					<div class="background">
-						<img src="media/b3.jpg" alt="background" class="back-img">
-					</div>	
-					<img class="homePic" src="media/2.png">
-					<div class="text">
-						<h1>Selling and leasing has never been easier</h1>
-						<p class="main-text">
-							Join thousands of other owners and keep it simple with Real Estate Agency.
-							Fill the form below and your property will be added to our database, which 
-							is one of the largest in US. Do you still have any questions? Feel free to 
-							contact us and our professionals will provide you with all needed information.
-						</p>
-					</div>
+				<img class="homePic" src="media/2.png">
+				<div class="text">
+					<h1>Selling and leasing has never been easier</h1>
+					<p class="main-text">
+						Join thousands of other owners and keep it simple with Real Estate Agency.
+						Fill the form below and your property will be added to our database, which 
+						is one of the largest in US. Do you still have any questions? Feel free to 
+						contact us and our professionals will provide you with all needed information.
+					</p>
 				</div>
 				<div class="container container-filter">
 					<form action="#" class="form">
@@ -355,13 +323,11 @@
 						WA 98102
 			
 						Tel.: +1 206 123 4567
-						Tel.: +1 206 456 7890
+						Tel.: +1 206 345 6789
 			
 						<span class="email"> info@realestag.com</span>
 			
-						Timetable:
-						Mon-Fri 9am - 9pm
-						Sut-Sun 12pm - 6pm
+						Timetable: Mon-Fri 9am - 9pm
 					</p>
 					<iframe class="map-box" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2687.715040117792!2d-122.32416538481796!3d47.651104092896446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549014faa09ab3ed%3A0x8047a64747307564!2s3217%20Eastlake%20Ave%20E%2C%20Seattle%2C%20WA%2098102%2C%20USA!5e0!3m2!1sen!2sua!4v1579053753591!5m2!1sen!2sua" 
 					frameborder="0" style="border:0;" allowfullscreen="">
@@ -370,6 +336,17 @@
 			</div>
 		</div>
 
+		<div id='search'>
+			<div class="content">
+			  <h3>Search results</h3>
+			  <ul id='search-results' class='hidden'>
+				<li class="hidden" id='search-row-template'><a class="inner-link" href='#'></a></li>
+				<li class="hidden" id='search-row-no-results'>No results found</li>
+			  </ul>
+			  
+			</div>
+		  </div>
+		  
   	</div>
 </body>
 </html>
