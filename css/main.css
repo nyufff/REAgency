@@ -173,7 +173,7 @@ main {
 .content {
     width: 100%;
     text-align: center;
-    margin-top:40px;
+    margin-top: 1%;
 }
 .container {
     background-color: #e2effc;
@@ -201,7 +201,7 @@ main {
 }
 .line-wide {
     width: 70%;
-    margin: 1% auto .5% auto;
+    margin: 0 auto 1% auto;
 }
 .box {
     width: 100%;
@@ -364,7 +364,7 @@ main {
 /*================ Property management ================*/
 .sq-manag {
     flex-basis: 45%;
-    margin: 7% 0;
+    margin: 5% 0;
     padding: 2%;
     background-color: #e2effc;
 }

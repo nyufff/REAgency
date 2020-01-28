@@ -93,10 +93,8 @@ class Router {
 			content = this.getHouses(params);
 			title = 'Houses for sale';
 		}
-		else if (params['p'] == 'search') {
-			content = this.search();
-			console.log(content);
-			title = 'Search';
+		else if (params['p'] == 'search' && typeof params['q'] != 'undefined' && params['q'] != '') {
+			content = this.search(params['q']);
 		}
 		else {
 			content = JSON.parse(window.localStorage.getItem('page_404'));
@@ -130,7 +128,6 @@ class Router {
 	}
 
 	search(searchString) {
-		console.log(searchString);
 		let searchResult = [];
 		if (searchString != '') {
 			for (let p in this._staticPagesLinks) {
