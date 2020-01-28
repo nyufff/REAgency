@@ -71,7 +71,7 @@ class Router {
 	    	let page = router.getPage(link);
     		document.getElementById('main').innerHTML = page['content'];
     		document.title = page['title'];
-			window.history.replaceState({}, "Title", event.currentTarget.href);
+			window.history.replaceState({}, "Title", link);
 		});
 	}
 
