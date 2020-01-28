@@ -7,13 +7,9 @@
 
 	<script type="text/javascript">
 		window.onload = function(){
-			window.localStorage.setItem('page_home', JSON.stringify(document.getElementById('home').innerHTML));
-			window.localStorage.setItem('page_login_page', JSON.stringify(document.getElementById('login_page').innerHTML));
-			window.localStorage.setItem('page_about_us', JSON.stringify(document.getElementById('about_us').innerHTML));
-			window.localStorage.setItem('page_services', JSON.stringify(document.getElementById('services').innerHTML));
-			window.localStorage.setItem('page_serv_owners', JSON.stringify(document.getElementById('serv_owners').innerHTML));
-			window.localStorage.setItem('page_serv_rent', JSON.stringify(document.getElementById('serv_rent').innerHTML));
-			window.localStorage.setItem('page_contacts', JSON.stringify(document.getElementById('contacts').innerHTML));
+		Array.from(document.querySelectorAll('.page_element')).forEach(function(el){
+			window.localStorage.setItem(el.dataset['name'], JSON.stringify(document.getElementById(el.id).innerHTML));
+		});
 		}
     </script>
 
@@ -68,7 +64,7 @@
 ********************* below are page templates **************************
 
 
-	    <div id="home">
+	    <div id="home" data-name="page_home" class="page_element">
 			<div class="content">
 				<div class="line line-wide"></div>
 				<div class="text">
@@ -78,7 +74,7 @@
 			</div>
 		</div>
 
-	    <div id="login_page">
+	    <div id="login_page" data-name="page_login_page" class="page_element">
 			<div class="content">
                 <div class="container reg-container">
                     <input id="log" name="switch" type="radio">
@@ -129,7 +125,7 @@
             </div>
         </div>
 
-	    <div id="about_us">
+	    <div id="about_us" data-name="page_about_us" class="page_element">
 		    <div class="content">
 				<img class="homePic" src="media/3.png" alt="house">
 				<div class="text">
@@ -183,18 +179,18 @@
 			</div>
 		</div>
 	    	
-	    <div id="services">
+	    <div id="services"  data-name="page_services" class="page_element">
 			<div class="content">
 				<div class="box">
 					<div class="sq-serv">
 						<h2 class="h2">Buy or rent a home</h2>
-						<p>Find a perfect house which will satisfy all your needs. We know what a home is really worth, so let us help you find yours.</p>
+						<p>Find a perfect place which will satisfy all your needs. We know what a home is really worth, so let us help you find yours.</p>
 						<button class="button button-serv">See more</button>
 					</div>
-					<img src="media/a.png" class="house">
+					<img src="media/d.png" class="house">
 				</div>
 				<div class="box">
-					<img src="media/b.png" class="house">
+					<img src="media/a.png" class="house">
 					<div class="sq-serv">
 						<h2 class="h2">Property management</h2 class="h2">
 						<p>Our company provides managment of property and take care about renovation, equipment and maintenance.</p>
@@ -212,7 +208,7 @@
 			</div>
 		</div>
 
-		<div id="serv_rent">
+		<div id="serv_rent" data-name="page_serv_rent" class="page_element">
 			<div class="content">
 				<div class="box box-prop">
 					<div class="container container-sideFilter">
@@ -278,7 +274,7 @@
 			</div>
 		</div>
 
-		<div id="serv_owners">
+		<div id="serv_owners" data-name="page_serv_owners" class="page_element">
 			<div class="content">
 				<img class="homePic" src="media/2.png">
 				<div class="text">
@@ -312,7 +308,48 @@
 			</div>
 		</div>
 
-		<div id="contacts">
+		<div id="prop_manag" data-name="page_prop_manag" class="page_element">
+			<div class="content">
+				<div class="box">
+					<div class="sq-manag">
+						<h2>Getting started</h2>
+						<p class="main-text">
+							If you are planning to sell or lease a property, your first step should be to 
+							establish an estimated price - and the best way to do this is to seek the 
+							assistance Real Estate Agency. Our comprehensive appraisal service, which is 
+							free of charge, can be booked for a time that suits you and will consist of a 
+							detailed report on local price movements, as well as advice pertaining to any 
+							significant changes that take place in the market after your appraisal is 
+							carried out.
+						</p>
+					</div>
+					<img src="media/b.png" class="house">
+				</div>
+				<div class="box">
+					<img src="media/e.png" class="house">
+					<div class="sq-manag">
+						<h2>Take the next steps</h2>
+						<p class="main-text">
+							Once you have agreed on the value of your property, you'll want to choose a 
+							method of sale/lease. We can help you determine whether auction, private treaty 
+							or tender is the right option for selling your property and help you to proceed 
+							accordingly. You can also place your property on our web-site by simply filling 
+							a form. Real Estate Agency has a huge network of resources to help you reach the 
+							widest audience.
+						</p>
+					</div>
+				</div>
+				<div class="box">
+					<div class="sq-manag">
+						<h2>Get support</h2>
+						<p class="main-text">
+					</div>
+					<img src="media/f.png" class="house">
+				</div>
+			</div>
+		</div>
+
+		<div id="contacts" data-name="page_contacts" class="page_element">
 			<div class="content">
 				<img class="homePic" src="media/4.png">
 				<div class="text">
@@ -336,17 +373,25 @@
 			</div>
 		</div>
 
-		<div id='search'>
+		<div id='search' data-name="page_search" class="page_element">
 			<div class="content">
 			  <h3>Search results</h3>
 			  <ul id='search-results' class='hidden'>
 				<li class="hidden" id='search-row-template'><a class="inner-link" href='#'></a></li>
 				<li class="hidden" id='search-row-no-results'>No results found</li>
 			  </ul>
-			  
 			</div>
-		  </div>
+		</div>
 		  
+		<div id='404' data-name="page_404" class="page_element">
+			<div class="content">
+			  <div id='content404'>
+				  <h3>404. Page not found</h3>
+				  <p>Sorry, we don't have this page. Try to use menu above to navigate to one of the pages we have</p>
+			  </div>
+			</div>
+		</div>
+
   	</div>
 </body>
 </html>

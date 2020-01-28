@@ -17,10 +17,6 @@ body {
     background-color: white;
     color: black;
 }
-.icon {
-    width: 24px;
-    height: 24px;
-}
 
 /*====================Buttons========================*/
 .button {
@@ -88,7 +84,7 @@ header {
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
-    flex: 0 0 30%;
+    flex: 1 0 30%;
     overflow: hidden;
 }
 .header {
@@ -164,19 +160,20 @@ header {
 }
 .main-video {
     width: 100%;
-    transform: translateY(-33%);
+    transform: translateY(-10%);
     object-fit: contain;
     overflow: hidden;
 }
 
 /*=======================Main=========================*/
 main {
-    flex: 1 0 60%;
+    flex-grow: 0;
     overflow: auto;
 }
 .content {
     width: 100%;
     text-align: center;
+    margin-top:40px;
 }
 .container {
     background-color: #e2effc;
@@ -193,14 +190,18 @@ main {
     margin: 1.5% auto;
     text-align: justify;
 }
+.icon {
+    width: 24px;
+    height: 24px;
+}
 .line {
     width: 20%;
-    margin: auto;
+    margin: 0 auto 1% auto;
     border: 2px solid rgb(180, 180, 173);
 }
 .line-wide {
     width: 70%;
-    margin-top: 3.5%;
+    margin: 1% auto .5% auto;
 }
 .box {
     width: 100%;
@@ -257,51 +258,12 @@ main {
     background-color: #e2effc;
 }
 .sq-serv {
-    width: 30%;
-    max-width: 500px;
+    width: 50%;
+    max-width: 550px;
     font-size: 110%;
     text-align: center;
     margin: 7% 0;
     padding: 3% 1%;
-}
-
-/*=================== For owners ==================*/
-.container-filter {
-    width: 60%;
-    padding: 3%;
-    margin: 5% auto;
-}
-.form {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: space-evenly;
-    justify-content: space-between;
-}
-.filters {
-    font-size: 100%;
-    font: normal 110% serif;
-    color: #757575;
-    border-radius: 0.25em;
-    box-shadow: rgb(209, 209, 213) 0px 5px 15px;
-    border: none;
-    outline: none;
-    padding: 1%;
-    margin: 2% 0;
-}
-.even {
-    width: 24%;
-}
-.wide {
-    width: 63%;
-}
-.short {
-    width: 10%;
-}
-.description {
-    width: 100%;
-}
-#addPics {
-    visibility: hidden;
 }
 
 /*=================== Buy/Rent ====================*/
@@ -358,6 +320,56 @@ main {
     flex-flow: row nowrap;
     justify-content: center;
     padding: 2%;
+}
+
+/*=================== For owners ==================*/
+.container-filter {
+    width: 60%;
+    padding: 3%;
+    margin: 5% auto;
+}
+.form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: space-evenly;
+    justify-content: space-between;
+}
+.filters {
+    font-size: 100%;
+    font: normal 110% serif;
+    color: #757575;
+    border-radius: 0.25em;
+    box-shadow: rgb(209, 209, 213) 0px 5px 15px;
+    border: none;
+    outline: none;
+    padding: 1%;
+    margin: 2% 0;
+}
+.even {
+    width: 24%;
+}
+.wide {
+    width: 63%;
+}
+.short {
+    width: 10%;
+}
+.description {
+    width: 100%;
+}
+#addPics {
+    visibility: hidden;
+}
+
+/*================ Property management ================*/
+.sq-manag {
+    flex-basis: 45%;
+    margin: 7% 0;
+    padding: 2%;
+    background-color: #e2effc;
+}
+.box:nth-of-type(2) > .sq-manag {
+    background-color: white;
 }
 
 /*=================== Contacts =======================*/
@@ -532,6 +544,19 @@ main {
 }
 .hidden {display: none;}
 
+/* ================= Not found ===================== */
+#content404 {
+    margin-top:40px;
+}
+
+#content404 p {
+    margin-top: 30px;
+}
+
+#search-results {
+    margin:30px;
+    
+}
 /*=================== Footer ========================*/
 .footer {
     width: 100%;

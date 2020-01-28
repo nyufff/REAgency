@@ -40,7 +40,7 @@ class Router {
 		} else {
 			this.path = url;
 		}
-		this.catchLinks();
+		this.setEvents();
 	}
 
 	get staticPages() {
@@ -51,7 +51,7 @@ class Router {
 		return this._dynamicPages;
 	}
 
-	catchLinks() {
+	setEvents() {
 		let router = this;	
 		Array.from(document.querySelectorAll("a.innerLink")).forEach(link => {
 		    link.addEventListener('click', function(event) {
@@ -60,9 +60,21 @@ class Router {
 	    		document.getElementById('main').innerHTML = page['content'];
 	    		document.title = page['title'];
 				window.history.replaceState({}, "Title", event.currentTarget.href);
+				return false;
 		    });
-		});	
+		});
+		document.getElementById("searchForm").addEventListener('submit', function(event) {
+	    	event.preventDefault();
+	    	let searchString = document.getElementById('searchString').value;
+	    	if (!searchString.length) { return false; }
+	    	let link = router.createURL({p: 'search', q: searchString});
+	    	let page = router.getPage(link);
+    		document.getElementById('main').innerHTML = page['content'];
+    		document.title = page['title'];
+			window.history.replaceState({}, "Title", event.currentTarget.href);
+		});
 	}
+
 
 	getPage(url) {
 		let params = this.parseURL(url);
@@ -83,9 +95,13 @@ class Router {
 		}
 		else if (params['p'] == 'search') {
 			content = this.search();
+			console.log(content);
 			title = 'Search';
 		}
-		return {content: content, title: title};
+		else {
+			content = JSON.parse(window.localStorage.getItem('page_404'));
+		}
+			return {content: content, title: title};
 	}
 	
 	parseURL(url) {
@@ -112,6 +128,48 @@ class Router {
 		}
 		return url;
 	}
+
+	search(searchString) {
+		console.log(searchString);
+		let searchResult = [];
+		if (searchString != '') {
+			for (let p in this._staticPagesLinks) {
+				if (p != '') {
+					let pcontent = JSON.parse(window.localStorage.getItem(this._staticPagesLinks[p])).replace(/<\/?[^>]+>/gi, '');
+					if (pcontent.indexOf(searchString) != -1) {
+						searchResult.push({
+							link: this.createURL({p: p}), 
+							title: this._pagesTitles[this._staticPagesLinks[p]]
+						});
+					}
+				}
+			}
+		}
+
+		let doc = document.implementation.createDocument(null, null);
+		let el = doc.createElement('div');
+		doc.appendChild(el);
+		let content = JSON.parse(window.localStorage.getItem('page_search'));
+		el.innerHTML = content;
+
+		if (searchResult.length) {
+			
+			let searchUL = doc.getElementById('search-results');
+			for (let res in searchResult) {
+				let link = doc.querySelector('#search-results-row-template a').cloneNode();
+				link.setAttribute('href', searchResult[res]['link']);
+				link.innerHTML = searchResult[res]['title'];
+				let ul = searchUL.appendChild(document.createElement('li'));
+				ul.appendChild(link);
+			}
+		} else {
+			doc.getElementById('search-row-no-results').classList.remove("hidden");
+		}
+		
+		return el.innerHTML;
+
+	}
+
 }
 
 
