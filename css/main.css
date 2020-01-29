@@ -96,7 +96,7 @@ header {
 }
 .header {
     width: 100%;
-    height: 14%;
+    height: 5rem;
     cursor: pointer;
     display: flex;
     flex-flow: row nowrap;
@@ -113,8 +113,8 @@ header {
     transition-duration: 1s;
 }
 .logo {
-    width: 8%;
-    height: 100%;
+    width: 6rem;
+    height: auto;
 }
 .nav-menu {
     list-style: none;
@@ -123,8 +123,7 @@ header {
     position: relative;
 }
 .nav-menu > li {
-    width: 130px;
-    height: 24px;
+    width: 8rem;
     text-align: center;
     border-right: 1.3px solid;
 }
@@ -143,22 +142,19 @@ header {
     visibility: hidden;
     position: absolute;
     text-align: left;
-    line-height: 2em;
+    line-height: 2rem;
     width: 50%;
     top: 100%;
     left: 16rem;
     padding: 2rem;
 }
-.nav-menu li:hover > .drop-menu {
+.drop:hover > .drop-menu {
     visibility: visible;
     background-color: rgba(222, 222, 210, 1);
     transition-duration: .3s;
 }
-.reg {
-    line-height: 5em;
-}
 .icon-reg {
-    padding-top: 3%;
+    margin-top: 1.8rem;
 }
 
 /*=======================Slider=======================*/
@@ -370,6 +366,7 @@ main {
     width: 300px;
     height: 300px;
     flex: none;
+    margin-bottom: 1%;
 }
 .img-prop {
     width: 100%;
@@ -417,7 +414,7 @@ main {
 }
 .address {
     text-align: center;
-    margin-bottom: .5rem;
+    margin: .5rem;
 }
 .prop-info {
     width: 100%;
@@ -446,6 +443,28 @@ main {
     justify-content: center;
 }
 
+/*================== Property card ================*/
+.gallery-box {
+    width: calc(98% - 350px);
+    padding: 1%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.gallery-text-box {
+    width: 350px;
+    max-height: 500px;
+    margin: 1%;
+    position: relative;
+    flex-grow: 0;
+    border: 2px solid rgb(180, 180, 173);
+}
+.gallery-prop-info {
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+
 /*=================== For owners ==================*/
 .container-filter {
     width: 80%;
@@ -464,8 +483,9 @@ main {
     height: 15%;
     padding-top: 1rem;
 }
-#add-pic {
-    visibility: hidden;
+.owner-card {
+    width: 80%;
+    margin: 1rem auto;
 }
 
 /*================ Property management ================*/

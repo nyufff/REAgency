@@ -67,14 +67,14 @@ class Router {
 		if (typeof urlParams['p'] == 'undefined') {
 			urlParams['p'] = '';
 		}
-		let template = JSON.parse(window.localStorage.getItem(this.templates[urlParams['p']]));
+		let template = JSON.parse(localStorage.getItem(this.templates[urlParams['p']]));
 		if (typeof template == 'string') {
 			document.title = this.pagesTitles[this.templates[urlParams['p']]];
 			document.getElementById('main').innerHTML = template;
 			return true;
 		}
 
-		template = JSON.parse(window.localStorage.getItem('page_404'));
+		template = JSON.parse(localStorage.getItem('page_404'));
 		document.title = 'Page Not Found';
 		document.getElementById('main').innerHTML = template;
 		return false;
@@ -87,13 +87,122 @@ class Router {
     	}
 	}
 
+	getUser() {
+		let cookies = document.cookie;
+		if (!cookies.length) { return false; }
+		let c1 = cookies.split(';');
+		if (!c1.length) { return false; }
+
+		let hash = false;
+
+		for (let c in c1) {
+			let c2 = c1[c].trim().split('=');
+			if (c2[0] == 'h') { hash = c2[1]; }
+		}
+
+		let user = false;
+		let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
+		if (typeof loggedInUsers[hash] == 'undefined') {
+			document.getElementById('menu-link-registration').classList.remove('hidden');
+			return false;
+		} else {
+			document.getElementById('menu-link-registration').classList.add('hidden');
+			let users = JSON.parse(localStorage.getItem('users'));
+			if (typeof users[loggedInUsers[hash]] != 'undefined') {
+				return users[loggedInUsers[hash]];
+			}
+		}
+		
+
+		
+	}
+
 	setPage (urlParams) {
+		let user = this.getUser();
+
 		if (urlParams['p'] == 'serv_rent') {
 			this.setPageHouses(urlParams);
 		}
 		else if (urlParams['p'] == 'search' && typeof urlParams['q'] != 'undefined' && urlParams['q'] != '') {
 			this.setPageSearch(urlParams['q']);
 		}
+		else if (urlParams['p'] == 'login_page') {
+			this.logreg(urlParams);
+		}
+
+	}
+
+	logreg (urlParams) {
+
+		let router = this;
+		//registration
+		document.getElementById('registration-form').addEventListener('submit', function(event){
+			event.preventDefault();
+			let users = JSON.parse(localStorage.getItem('users'));
+			let name = document.getElementById('registration-form-name').value;
+			let email = document.getElementById('registration-form-email').value;
+			let pass = document.getElementById('registration-form-pass').value;
+			if (name != name.replace(/[^a-zA-Z0-9.-]/g, '') || name.length < 5 || email != email.replace(/[^a-zA-Z0-9.-@]/g, '') || pass.length < 7) {
+				document.getElementById('reg-login-info').innerHTML = "Wrong credentials. Fix and try again";
+				return false;
+			} else {
+				document.getElementById('reg-login-info').innerHTML = "";
+				let nextId = 0; 
+				let dup = false;
+				for (let u in users) { 
+					if (parseInt(users[u]['id']) > nextId) { 
+						nextId = parseInt(users[u]['id']); 
+					}
+					if (users[u]['login'] == email) {
+						dup = true;
+					}
+				}
+				if (dup == true) {
+					document.getElementById('reg-login-info').innerHTML = "This user is already registered. Fix and try again";
+					return false;
+				}
+				users[nextId + 1] = {id:nextId + 1, name: name, login: email, pass: pass};
+				localStorage.setItem('users', JSON.stringify(users));
+			}
+			let url = router.createURL(urlParams);
+			router.changePage(url, urlParams);
+		});
+
+		//login
+		document.getElementById('login-form').addEventListener('submit', function(event){
+			event.preventDefault();
+			let users = JSON.parse(localStorage.getItem('users'));
+			let email = document.getElementById('login-login').value;
+			let pass = document.getElementById('login-pass').value;
+			let user = null;
+			for (let u in users) { 
+				if (users[u]['login'] == email && users[u]['pass'] == pass) { 
+					user = users[u]; 
+				}
+			}
+			if (typeof user != 'object') {
+				document.getElementById('reg-login-info').innerHTML = "Wrong login or password. Fix and try again";
+				return false;
+			}
+
+			let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
+			let hash = ''; 
+			do {
+				hash = '';
+				for (let i=0; i<11; i++) {
+					let r = Math.random().toString(36).substring(10);
+					hash += r;
+				}
+			} while (typeof loggedInUsers[hash] != 'undefined');
+			
+			loggedInUsers[hash] = user['id'];
+			sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
+			document.cookie = "h=" + hash + "; max-age=3600";
+
+			urlParams['p'] = '';
+			let url = router.createURL(urlParams);
+			router.changePage(url, urlParams);
+		});
 	}
 
 	setHomesEvents (urlParams) {
@@ -162,7 +271,7 @@ class Router {
 		if (searchString != '') {
 			for (let p in this.templates) {
 				if (p != '') {
-					let pcontent = JSON.parse(window.localStorage.getItem(this.templates[p])).replace(/<\/?[^>]+>/gi, '');
+					let pcontent = JSON.parse(localStorage.getItem(this.templates[p])).replace(/<\/?[^>]+>/gi, '');
 					if (pcontent.indexOf(searchString) != -1) {
 						searchResult.push({
 							link: this.createURL({p: p}), 
@@ -194,7 +303,7 @@ class Router {
 
 	setPageHouses (urlParams) {
 
-		let houses = JSON.parse(window.localStorage.getItem('houses'));
+		let houses = JSON.parse(localStorage.getItem('houses'));
 		let housesForPage = [];
 		let sortv = 'id';
 		if (typeof urlParams['sortv'] != 'undefined') { sortv = urlParams['sortv']; }
@@ -232,7 +341,7 @@ class Router {
 
 		let paginationNums = [], paginationPrev = false, paginationNext = false;
 		if (housesForPage.length) {
-			let images = JSON.parse(window.localStorage.getItem('images'));
+			let images = JSON.parse(localStorage.getItem('images'));
 			let houseImages = {};
 			for (let im in images) {
 				if (typeof houseImages[images[im]['houseId']] == 'undefined') {
@@ -301,6 +410,10 @@ class Router {
 
 
 window.onload = function() {
+	document.cookie = "h2=asdf; max-age=3600";
+	document.cookie = "h3=1234; max-age=3600";
+	document.cookie = "h4=fdsagdsf; max-age=3600";
+	sessionStorage.setItem('users', JSON.stringify({}));
 	let router = new Router();
 	let urlParams = router.parseURL(window.location.href);
 	router.changePage(window.location.href, urlParams);
