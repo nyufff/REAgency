@@ -26,7 +26,7 @@ class Router {
 
 		this._dynamicPages = {'houses': 'houses'};
 		this._staticPagesLinks = {'': 'page_home', 'home': 'page_home', 'about_us': 'page_about_us',
-								'services': 'page_services', 'serv_rent': 'page_serv_rent',
+								'services': 'page_services', 
 								'serv_owners': 'page_serv_owners', 'prop_manag': 'page_prop_manag',
 								'contacts': 'page_contacts', 'login_page': 'page_login_page'};
 		this._pagesTitles = {'page_home': 'Home', 'page_about_us': 'About Us', 'page_services': 'Services',
@@ -41,7 +41,7 @@ class Router {
 		} else {
 			this.path = url;
 		}
-		this.setEvents();
+		this.setGlobalEvents();
 	}
 
 	get staticPages() {
@@ -52,7 +52,7 @@ class Router {
 		return this._dynamicPages;
 	}
 
-	setEvents() {
+	setGlobalEvents() {
 		let router = this;	
 		Array.from(document.querySelectorAll("a.innerLink")).forEach(link => {
 		    link.addEventListener('click', function(event) {
@@ -61,7 +61,8 @@ class Router {
 	    		document.getElementById('main').innerHTML = page['content'];
 	    		document.title = page['title'];
 				window.history.replaceState({}, "Title", event.currentTarget.href);
-				return false;
+				console.log(page['p']);
+				router.setPagesEvents(page['p']);
 		    });
 		});
 		document.getElementById("searchForm").addEventListener('submit', function(event) {
@@ -73,7 +74,25 @@ class Router {
     		document.getElementById('main').innerHTML = page['content'];
     		document.title = page['title'];
 			window.history.replaceState({}, "Title", link);
+			router.setPagesEvents(page['p']);
 		});
+	}
+
+	setPagesEvents (p) {
+		let router = this;
+		if (p == 'serv_rent') {
+			document.getElementById('housesSortPrice').addEventListener('change', function(event){
+				let params = router.parseURL(window.location.href);
+				params['sortv'] = 'price';
+				params['sortd'] = event.currentTarget.value;
+				let link = router.createURL(params);
+		    	let page = router.getPage(link);
+	    		document.getElementById('main').innerHTML = page['content'];
+	    		document.title = page['title'];
+				window.history.replaceState({}, "Title", link);
+				router.setPagesEvents(page['p']);
+			});
+		}
 	}
 
 
@@ -101,7 +120,7 @@ class Router {
 		else {
 			content = JSON.parse(window.localStorage.getItem('page_404'));
 		}
-			return {content: content, title: title};
+		return {content: content, title: title, p: params['p']};
 	}
 	
 	parseURL(url) {
@@ -180,44 +199,44 @@ class Router {
 		// filter and prepare to sort
 		for (let h in houses) {
 			if (
-					(typeof params['pricemin'] == 'undefined' || houses[h]['price'] >= params['pricemin'])
-				&&	(typeof params['pricemax'] == 'undefined' || houses[h]['price'] <= params['pricemax'])
-				&&	(typeof params['florsmin'] == 'undefined' || houses[h]['floors'] >= params['florsmin'])
-				&&	(typeof params['florsmax'] == 'undefined' || houses[h]['floors'] <= params['florsmax'])
-				&&	(typeof params['bedrmmin'] == 'undefined' || houses[h]['bedrooms'] >= params['bedrmmin'])
-				&&	(typeof params['bedrmmax'] == 'undefined' || houses[h]['bedrooms'] <= params['bedrmmax'])
-				&&	(typeof params['bathrmin'] == 'undefined' || houses[h]['bathrooms'] >= params['bathrmin'])
-				&&	(typeof params['bathrmax'] == 'undefined' || houses[h]['bathrooms'] <= params['bathrmax'])
-				&&	(typeof params['yearbmin'] == 'undefined' || houses[h]['yearbuilt'] >= params['yearbmin'])
-				&&	(typeof params['yearbmax'] == 'undefined' || houses[h]['yearbuilt'] <= params['yearbmax'])
-				&&	(typeof params['dealtype'] == 'undefined' || houses[h]['dealtype'] == params['dealtype']) ) {
+					(typeof params['pricemin'] == 'undefined' || params['pricemin'] == '' || houses[h]['price'] >= params['pricemin'])
+				&&	(typeof params['pricemax'] == 'undefined' || params['pricemax'] == '' || houses[h]['price'] <= params['pricemax'])
+				&&	(typeof params['florsmin'] == 'undefined' || params['florsmin'] == '' || houses[h]['floors'] >= params['floorsmin'])
+				&&	(typeof params['florsmax'] == 'undefined' || params['florsmax'] == '' || houses[h]['floors'] <= params['floorsmax'])
+				&&	(typeof params['bedrmmin'] == 'undefined' || params['bedrmmin'] == '' || houses[h]['bedrooms'] >= params['bedrmmin'])
+				&&	(typeof params['bedrmmax'] == 'undefined' || params['bedrmmax'] == '' || houses[h]['bedrooms'] <= params['bedrmmax'])
+				&&	(typeof params['bathrmin'] == 'undefined' || params['bathrmin'] == '' || houses[h]['bathrooms'] >= params['bathrmin'])
+				&&	(typeof params['bathrmax'] == 'undefined' || params['bathrmax'] == '' || houses[h]['bathrooms'] <= params['bathrmax'])
+				&&	(typeof params['yearbmin'] == 'undefined' || params['yearbmin'] == '' || houses[h]['yearbuilt'] >= params['yearbmin'])
+				&&	(typeof params['yearbmax'] == 'undefined' || params['yearbmax'] == '' || houses[h]['yearbuilt'] <= params['yearbmax'])
+				&&	(typeof params['dealtype'] == 'undefined' || params['dealtype'] == '' || houses[h]['dealtype'] == params['dealtype']) ) {
 					housesForPage.push([houses[h], houses[h][sortv]]);
 			}
 		}
+		console.log(housesForPage);
 		//sort
 		let asc = true;
 		if (typeof params['sortd'] != 'undefined' && params['sortd'] == 'desc') { asc = false; }
 		housesForPage.sort(function(a, b) {
 			return ((asc) ? (a[1] - b[1]) : (b[1] - a[1]));
 		})
+		let totalFilteredHouses = housesForPage.length;
 		let perPage = 3;
-		housesForPage = housesForPage.slice(perPage * (params['page'] - 1));
+		if (typeof params['page'] == 'undefined') { params['page'] = 1; }
+		params['page'] = parseInt(params['page']);
+		housesForPage = housesForPage.slice(perPage * (params['page'] - 1), perPage * params['page']);
 
-		let paginationNums = [], paginationLeft = false, paginationRoght = false;
+		let paginationNums = [], paginationPrev = false, paginationNext = false;
 		if (housesForPage.length) {
-			if (typeof params['page'] != 'undefined') { params['page'] = 1; }
-			for (let i = -2; i < 3; i++) { 
-				let pageCandidate = params['page'] + i;
-				if (pageCandidate > 0 && pageCandidate <= (housesForPage.length / perPage + 1)) {
-					if (i == -1) {paginationLeft = pageCandidate;}
-					if (i == 1) {paginationRight = pageCandidate;}
-					paginationNums.push(pageCandidate);
-				}
-			}
 			let doc = document.implementation.createHTMLDocument('tmp');
 			let el = doc.createElement('div');
 			doc.body.appendChild(el);
 			el.innerHTML = content;
+			// doc.getElementById('housesSortPrice').value = ((asc) ? 'asc' : 'desc');
+			doc.getElementById('housesSortPrice').value = 'asc';
+			console.log(doc.getElementById('housesSortPrice').value);
+			// doc.getElementById('housesSortPrice').options[((asc) ? 'asc' : 'desc')].setAttribute('selected');
+			//  houses
 			let wrapper = doc.getElementById("housesIndexWrapper");
 			for (let i in housesForPage) {
 				let propTemplate = doc.getElementById("propTemplate").cloneNode(true);
@@ -234,7 +253,33 @@ class Router {
 				doc.querySelector('#propTemplateCandidate').removeAttribute('id');
 			}
 
-			console.log(el)
+			// pagination buttons
+			
+			let nextParams = JSON.parse(JSON.stringify(params));
+			console.log(params['page'], totalFilteredHouses);
+			doc.getElementById('houses-pag-num-self').innerHTML = params['page'];
+			for (let i = -2; i < 3; i++) {
+				let pageCandidate = params['page'] + i;
+				console.log(i, pageCandidate, (totalFilteredHouses / perPage + 1));
+				if (pageCandidate != params['page'] && pageCandidate > 0 && pageCandidate <= Math.ceil(totalFilteredHouses / perPage)) {
+					nextParams['page'] = pageCandidate;
+					let link = this.createURL(nextParams);
+					if (i == -1) {
+						doc.querySelector('#houses-pag-prev a').setAttribute('href', link);
+						doc.querySelector('#houses-pag-prev a').classList.add('active-pag-link');
+						doc.getElementById('houses-pag-prev').classList.remove('hidden');
+					}
+					if (i == 1) {
+						doc.querySelector('#houses-pag-next a').setAttribute('href', link);
+						doc.querySelector('#houses-pag-next a').classList.add('active-pag-link');
+						doc.getElementById('houses-pag-next').classList.remove('hidden');
+					}
+					doc.querySelector('#houses-pag-num-' + (i + 3) + ' a').setAttribute('href', link);
+					doc.querySelector('#houses-pag-num-' + (i + 3) + ' a').innerHTML = pageCandidate;
+					doc.querySelector('#houses-pag-num-' + (i + 3) + ' a').classList.add('active-pag-link');
+					doc.getElementById('houses-pag-num-' + (i + 3)).classList.remove('hidden');
+				}
+			}
 			content = el.innerHTML;
 		}
 
@@ -249,6 +294,7 @@ window.onload = function() {
 	let page = router.getPage(window.location.href);
 	document.getElementById('main').innerHTML = page['content'];
 	document.title = page['title'];
+	router.setPagesEvents(page['p']);
 }
 
 

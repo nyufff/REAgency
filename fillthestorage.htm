@@ -245,57 +245,44 @@
 			<div class="content">
 				<div class="box">
 					<div class="container container-sideFilter">
-						<form action="#" class="form">
+						<form id="houses-filters-form" action="" class="form" method="GET">
+							<input type="hidden" name="p" value="serv_rent">
 							<select class="filters" name="dealtype">
 								<option value="0" disabled selected>Type of transaction</option>
 								<option value="1">Sale</option>
 								<option value="2">Rent out</option>
 							</select>
 							<input type="text" class="filters" name="zip" maxlength="5", placeholder="Zip code">
-							<select class="filters" name="floors">
-								<option value="0" disabled selected>Number of floors</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5+</option>
-							</select>
-							<select class="filters" name="bedrooms">
-								<option value="0" disabled selected>Number of bedrooms</option>
-								<option value="1">Studio</option>
-								<option value="2">1</option>
-								<option value="3">2</option>
-								<option value="4">3</option>
-								<option value="4">4</option>
-								<option value="5">5+</option>
-								<option value="5">10+</option>
-							</select>
-							<select class="filters" name="bathrooms">
-								<option value="0" disabled selected>Number of bathrooms</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="5">5+</option>
-							</select>
-							<select class="filters" name="yearbuilt">
-								<option value="0" disabled selected>Year built</option>
-								<option value="1">1900-1925</option>
-								<option value="2">1925-1950</option>
-								<option value="3">1950-1975</option>
-								<option value="4">1975-2000</option>
-								<option value="5"> 2000+</option>
-							</select>
-							<p class="label">Price</p>
+							<p class="label">Number of floors</p>
 							<div>
 								<label>From:</label>
-								<input class="filters short" type="number" name="price" step="1000" min="0" max="10000000">
+								<input class="filters short" type="number" name="floorsmin" step="1" min="0" max="10000000">
 								<label>To:</label>
-								<input class="filters short" type="number" name="price" step="1000" min="0" max="10000000">
+								<input class="filters short" type="number" name="floorsmax" step="1" min="0" max="10000000">
+							</div>
+							<p class="label">Number of bedrooms</p>
+							<div>
+								<label>From:</label>
+								<input class="filters short" type="number" name="bedrnmin" step="1" min="0" max="10000000">
+								<label>To:</label>
+								<input class="filters short" type="number" name="bedrmmax" step="1" min="0" max="10000000">
+							</div>
+							<p class="label">Number of bathrooms</p>
+							<div>
+								<label>From:</label>
+								<input class="filters short" type="number" name="bathrmin" step="1" min="0" max="10000000">
+								<label>To:</label>
+								<input class="filters short" type="number" name="bathrmax" step="1" min="0" max="10000000">
+							</div>
+							<p class="label">Year built</p>
+							<div>
+								<label>From:</label>
+								<input class="filters short" type="number" name="yearbmin" step="1" min="0" max="10000000">
+								<label>To:</label>
+								<input class="filters short" type="number" name="yearbmax" step="1" min="0" max="10000000">
 							</div>
 						</form>
-						<button class="button button-filter">Search</button>
+						<button class="button button-filter" type="submit" form="houses-filters-form">Search</button>
 					</div>
 
 					<div class="box-prop">
@@ -304,10 +291,10 @@
                                 <p class="search-result">Found 20 objects</p>
                             </div>
                             <div class="sort">
-								<select class="filters" name="sort">
-									<option value="0" disabled selected>Sort</option>
-									<option value="price-inc">Low price to high</option>
-									<option value="price-dic">High price to low</option>
+								<select id="housesSortPrice" class="filters" name="sort">
+									<option value="0">Sort</option>
+									<option value="asc">Low price to high</option>
+									<option value="desc">High price to low</option>
 								</select>
 							</div>
                             <div class="filter-list">
@@ -321,8 +308,8 @@
 							</div>
 						</div>
 						
-						<div class="prop">
-							<div id="propTempl">
+						<div class="prop" id="housesIndexWrapper">
+							<div id="propTemplate" class='hidden'>
 								<div class=" card">
 									<div class="img-box">
 										<img src="media/house1.jpg" class="img-prop">
@@ -356,25 +343,13 @@
 
 				<div class="pagination-box">
 					<ul class="pagin">
-						<li class="button button-pagin"></li>
-						<li class="button button-pagin">
-							<a class="link" href="">1</a>
-						</li>
-						<li class="button button-pagin">
-							<a class="link" href="">2</a>
-						</li>
-						<li class="button button-pagin">
-							<a class="link" href="">3</a>
-						</li>
-						<li class="button button-pagin">
-							<a class="link" href="">4</a>
-						</li>
-						<li class="button button-pagin">
-							<a class="link" href="">5</a>
-						</li>
-						<li class="button button-pagin">
-							<a class="link" href=""></a>
-						</li>
+						<li id="houses-pag-prev" class="button button-pagin hidden"><a class="link" href="" >&lt;</a></li>
+						<li id="houses-pag-num-1" class="button button-pagin hidden"><a class="link" href="">1</a></li>
+						<li id="houses-pag-num-2" class="button button-pagin hidden"><a class="link" href="">1</a></li>
+						<li id="houses-pag-num-self" class="button-pagin">1</li>
+						<li id="houses-pag-num-4" class="button button-pagin hidden"><a class="link" href="">1</a></li>
+						<li id="houses-pag-num-5" class="button button-pagin hidden"><a class="link" href="">1</a></li>
+						<li id="houses-pag-next" class="button button-pagin hidden"><a class="link" href="" >&gt;</a></li>
 					</ul>
 				</div>
 			</div>
