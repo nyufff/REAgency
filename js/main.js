@@ -33,6 +33,7 @@ class Router {
 							'page_serv_rent': 'Buy/Rent', 'page_serv_owners': 'For Owners', 
 							'page_prop_manag': 'Property Management', 'page_contacts': 'Contact Us',
 							'page_login_page': "Log In"};
+		this.mainFile = 'index.html';					
 
 		let url = window.location.href;
 		if (url.indexOf('?') !== -1) {
@@ -89,12 +90,13 @@ class Router {
 			content = JSON.parse(window.localStorage.getItem(this._staticPagesLinks[params['p']]));
 			title = this._pagesTitles[this._staticPagesLinks[params['p']]];
 		}
-		else if (params['p'] == 'houses_sale') {
+		else if (params['p'] == 'serv_rent') {
 			content = this.getHouses(params);
 			title = 'Houses for sale';
 		}
 		else if (params['p'] == 'search' && typeof params['q'] != 'undefined' && params['q'] != '') {
 			content = this.search(params['q']);
+			title = 'Search';
 		}
 		else {
 			content = JSON.parse(window.localStorage.getItem('page_404'));
@@ -116,7 +118,7 @@ class Router {
 	}
 
 	createURL(params) {
-		let url = this.path;
+		let url = this.mainFile;
 		if (typeof params == 'object') {
 			url = url + '?';
 			for (let key in params) {
@@ -143,9 +145,9 @@ class Router {
 			}
 		}
 
-		let doc = document.implementation.createDocument(null, null);
+		let doc = document.implementation.createHTMLDocument('tmp');
 		let el = doc.createElement('div');
-		doc.appendChild(el);
+		doc.body.appendChild(el);
 		let content = JSON.parse(window.localStorage.getItem('page_search'));
 		el.innerHTML = content;
 
@@ -165,6 +167,78 @@ class Router {
 		
 		return el.innerHTML;
 
+	}
+
+	getHouses(params) {
+
+		let houses = JSON.parse(window.localStorage.getItem('houses'));
+		let housesForPage = [];
+		let content = JSON.parse(window.localStorage.getItem('page_serv_rent'));
+		let sortv = 'id';
+		if (typeof params['sortv'] != 'undefined') { sortv = params['sortv']; }
+
+		// filter and prepare to sort
+		for (let h in houses) {
+			if (
+					(typeof params['pricemin'] == 'undefined' || houses[h]['price'] >= params['pricemin'])
+				&&	(typeof params['pricemax'] == 'undefined' || houses[h]['price'] <= params['pricemax'])
+				&&	(typeof params['florsmin'] == 'undefined' || houses[h]['floors'] >= params['florsmin'])
+				&&	(typeof params['florsmax'] == 'undefined' || houses[h]['floors'] <= params['florsmax'])
+				&&	(typeof params['bedrmmin'] == 'undefined' || houses[h]['bedrooms'] >= params['bedrmmin'])
+				&&	(typeof params['bedrmmax'] == 'undefined' || houses[h]['bedrooms'] <= params['bedrmmax'])
+				&&	(typeof params['bathrmin'] == 'undefined' || houses[h]['bathrooms'] >= params['bathrmin'])
+				&&	(typeof params['bathrmax'] == 'undefined' || houses[h]['bathrooms'] <= params['bathrmax'])
+				&&	(typeof params['yearbmin'] == 'undefined' || houses[h]['yearbuilt'] >= params['yearbmin'])
+				&&	(typeof params['yearbmax'] == 'undefined' || houses[h]['yearbuilt'] <= params['yearbmax'])
+				&&	(typeof params['dealtype'] == 'undefined' || houses[h]['dealtype'] == params['dealtype']) ) {
+					housesForPage.push([houses[h], houses[h][sortv]]);
+			}
+		}
+		//sort
+		let asc = true;
+		if (typeof params['sortd'] != 'undefined' && params['sortd'] == 'desc') { asc = false; }
+		housesForPage.sort(function(a, b) {
+			return ((asc) ? (a[1] - b[1]) : (b[1] - a[1]));
+		})
+		let perPage = 3;
+		housesForPage = housesForPage.slice(perPage * (params['page'] - 1));
+
+		let paginationNums = [], paginationLeft = false, paginationRoght = false;
+		if (housesForPage.length) {
+			if (typeof params['page'] != 'undefined') { params['page'] = 1; }
+			for (let i = -2; i < 3; i++) { 
+				let pageCandidate = params['page'] + i;
+				if (pageCandidate > 0 && pageCandidate <= (housesForPage.length / perPage + 1)) {
+					if (i == -1) {paginationLeft = pageCandidate;}
+					if (i == 1) {paginationRight = pageCandidate;}
+					paginationNums.push(pageCandidate);
+				}
+			}
+			let doc = document.implementation.createHTMLDocument('tmp');
+			let el = doc.createElement('div');
+			doc.body.appendChild(el);
+			el.innerHTML = content;
+			let wrapper = doc.getElementById("housesIndexWrapper");
+			for (let i in housesForPage) {
+				let propTemplate = doc.getElementById("propTemplate").cloneNode(true);
+				propTemplate.setAttribute('id', 'propTemplateCandidate');
+				wrapper.appendChild(propTemplate);
+				doc.querySelector('#propTemplateCandidate .address').innerHTML = housesForPage[i][0]['address'];
+				doc.querySelector('#propTemplateCandidate .zip').innerHTML = housesForPage[i][0]['zip'];
+				doc.querySelector('#propTemplateCandidate .bedrooms').innerHTML = housesForPage[i][0]['bedrooms'];
+				doc.querySelector('#propTemplateCandidate .bathrooms').innerHTML = housesForPage[i][0]['bathrooms'];
+				doc.querySelector('#propTemplateCandidate .year').innerHTML = housesForPage[i][0]['yearbuilt'];
+				doc.querySelector('#propTemplateCandidate .price').innerHTML = housesForPage[i][0]['price'];
+				doc.querySelector('#propTemplateCandidate .descr').innerHTML = housesForPage[i][0]['description'];
+				doc.querySelector('#propTemplateCandidate').classList.remove('hidden');
+				doc.querySelector('#propTemplateCandidate').removeAttribute('id');
+			}
+
+			console.log(el)
+			content = el.innerHTML;
+		}
+
+		return content;
 	}
 
 }

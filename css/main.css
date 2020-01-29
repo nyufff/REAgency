@@ -7,7 +7,7 @@ html {
     width: 100%;
     max-width: 100%;
     overflow: hidden;
-    font: normal 1em 'Baskervville', serif;
+    font: normal 16px 'Baskervville', serif;
 }
 body {
     width: 100vw;
@@ -58,15 +58,19 @@ body {
     padding: 1%;
 }
 .button-filter {
-    padding: 1.5% 8%;
-    margin: 3% auto;
+    padding: .7rem 2.5rem;
+    margin: 10% auto;
 }
 .button-addPics {
     padding: 1% 2%;
 }
-.button-light-box {
-    padding: 1% 5%;
-    margin: 3% auto;
+.button-prop {
+    padding: .7rem;
+    position: absolute;
+    bottom: 10%;
+    right: 20%;
+    background-color: #e2effc;
+    box-shadow: none;
 }
 .button-pagin {
     height: 35px;
@@ -137,10 +141,10 @@ header {
     position: absolute;
     text-align: left;
     line-height: 2em;
-    width: 100%;
+    width: 50%;
     top: 100%;
-    left: 0;
-    padding: 10%;
+    left: 16rem;
+    padding: 2rem;
 }
 .nav-menu li:hover > .drop-menu {
     visibility: visible;
@@ -267,25 +271,91 @@ main {
 }
 
 /*=================== Buy/Rent ====================*/
-.box-prop {
-    margin: 7% 0;
-}
 .container-sideFilter {
-    flex: 0 0 21%;
-    max-width: 400px;
-    padding: 1%;
-    margin: 1% 2%;
+    width: 20rem;
+    margin: 1%;
+    color: #757575;
+    font-family: serif;
 }
-.prop {
-    flex: 0 0 75%;
-    padding: 1%;
-    max-height: 800px;
-    overflow: auto;
+.form {
     display: flex;
     flex-flow: row wrap;
-    align-items: space-between;
+    align-items: space-evenly;
+    justify-content: center;
+}
+.filters {
+    width: 95%;
+    height: 2.5rem;
+    font: normal 110% serif;
+    color: #757575;
+    border-radius: 0.25em;
+    box-shadow: rgb(209, 209, 213) 0px 5px 15px;
+    border: none;
+    outline: none;
+    padding: 0 2%;
+    margin: 4% 0;
+}
+.label {
+    width: 95%;
+    font-size: 120%;
+}
+.short {
+    width: 6rem;
+    height: 2rem;
+}
+.box-prop {
+    flex-grow: 1;
+    max-width: 70%;
+    padding: 1%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+.row {
+    width: 100%;
+    padding: 1%;
+    margin-bottom: 1rem;
+    background-color: #e2effc;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+.result {
+    width: 80%;
+    height: 2rem;
+    font-size: 150%;
+    padding: 1%;
+    text-align: left;
+}
+.filter-list {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.list-item {
+    width: 8rem;
+    display: flex;
+    flex-flow: row nowrap;
     justify-content: space-evenly;
-    font-family: serif;
+    list-style: none;
+    font: normal 110% serif;
+    background-color: white;
+    color:  #757575;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 3% 2%;
+    margin: 1%;
+}
+.remove {
+    border: none;
+    text-shadow: none;
+    color: #757575;
+    font-size: 110%;
+    outline: none;
+    background-color: transparent;
 }
 .img-box {
     width: 300px;
@@ -298,21 +368,64 @@ main {
     object-fit: cover;
     overflow: hidden;
 }
-.container-prop {
-    width: 95%;
-    margin-bottom: 1%;
+.prop {
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+}
+.card {
+    width: 98%;
+    min-width: 800px;
+    display: flex;
+    flex-grow: 1;
+    flex-flow: row nowrap;
+    padding: 1%;
+    margin: 1%;
+    position: relative;
+    border: 2px solid rgb(180, 180, 173);
+}
+.text-box {
+    flex-grow: 1;
+    font: normal 110% serif;
+    padding: 2%;
+    text-align: justify;
+}
+.dealtype {
+    width: 8rem;
+    height: 3rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #3f3d3d;
+    background-color: #e2effc;
+    text-align: center;
+    padding-top: 1%;
+    font-size: 130%;
+}
+.address {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.prop-info {
+    width: 100%;
+    color: #3f3d3d;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    align-items: center;
 }
-.text-box {
-    display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 1;
+.descr {
+    margin: 1rem 0;
+}
+.price {
+    font-size: 130%;
 }
 .pagination-box {
-    flex: 0 0 75%;
-    margin-left: auto;
+    width: 100%;
+    text-align: center;
+    background-color: #e2effc;
 }
 .pagin {
     list-style: none;
@@ -328,32 +441,13 @@ main {
     padding: 3%;
     margin: 5% auto;
 }
-.form {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: space-evenly;
-    justify-content: space-between;
-}
-.filters {
-    font-size: 100%;
-    font: normal 110% serif;
-    color: #757575;
-    border-radius: 0.25em;
-    box-shadow: rgb(209, 209, 213) 0px 5px 15px;
-    border: none;
-    outline: none;
-    padding: 1%;
-    margin: 2% 0;
-}
 .even {
     width: 24%;
 }
 .wide {
     width: 63%;
 }
-.short {
-    width: 10%;
-}
+
 .description {
     width: 100%;
 }
@@ -373,7 +467,7 @@ main {
 }
 
 /*=================== Contacts =======================*/
-.address {
+.addr {
     text-align: left;
     font-family: serif;
     white-space: pre;
@@ -560,23 +654,26 @@ main {
 /*=================== Footer ========================*/
 .footer {
     width: 100%;
+    height: 3rem;
     background-color: rgb(224, 224, 212);
     display: flex;
-    flex: 0 0 10%;
-    flex-flow: row nowrap;
+    flex-shrink: 0;
+    flex-flow: row wrap;
     justify-content: flex-end;
     text-align: center;
-    padding-top: 1.5%;
+    padding-top: 1%;
+    font: normal 1.1rem serif;
 }
 .copy {
     width: 50%;
-    font: normal 110% serif;
+    min-width: 200px;
 }
 .share {
     width: 25%;
+    min-width: 200px;
 }
 .icon-share {
-    margin-right: 2%;
+    margin-right: .3rem;
 }
 .icon-share:hover {
     transform: scale(1.3);
@@ -585,13 +682,13 @@ main {
     position: absolute;
     text-align: center;
     background-color: rgb(222, 222, 210);
-    border-radius: 0.25em;
-    bottom: -1%;
-    right: 5%;
-    padding: 0 2%;
+    border-radius: 0.25rem;
+    bottom: 0;
+    right: 5rem;
+    padding: 0 1rem;
     display: none;
 }
 .hide::before {
-    font: normal 300% FontAwesome;
+    font: normal 2.5rem FontAwesome;
     content: '\f106';
 }
