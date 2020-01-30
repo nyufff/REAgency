@@ -176,11 +176,11 @@
 						<form id="login-form" action="#">
 							<h1 class="form-title">Login into account</h1>
 							<div class="form-group">
-								<input id="login-login" type="email" class="reg-input" placeholder=" " required>
+								<input id="login-login" type="email" name="login" class="reg-input" placeholder=" " required>
 								<label class="reg-label">Your email</label>
 							</div>
 							<div class="form-group">
-								<input id="login-pass" type="password" class="reg-input" placeholder=" " required>
+								<input id="login-pass" type="password" name="password" class="reg-input" placeholder=" " required>
 								<label class="reg-label">Your password</label>
 							</div>
 							<button type="submit" form="login-form" class="button reg-button">Login</button>
@@ -191,15 +191,15 @@
 						<form id="registration-form" action="#">
 							<h1 class="form-title">Create new account</h1>
 							<div class="form-group">
-								<input id="registration-form-name" type="name" pattern="^[a-zA-Z0-9]{5,}$" title="letters and numbers only. 5 min" class="reg-input" placeholder=" " required>
+								<input id="registration-form-name" type="name" name="name" pattern="^[a-zA-Z0-9]{5,}$" title="letters and numbers only. 5 min" class="reg-input" placeholder=" " required>
 								<label class="reg-label">Your name</label>
 							</div>
 							<div class="form-group">
-								<input id="registration-form-email" type="email" pattern="^[a-zA-Z0-9._\-]{2,}@[a-zA-Z0-9._\-]{2,}$" title="valid email address" class="reg-input" placeholder=" " required>
+								<input id="registration-form-email" type="email" name="login" pattern="^[a-zA-Z0-9._\-]{2,}@[a-zA-Z0-9._\-]{2,}$" title="valid email address" class="reg-input" placeholder=" " required>
 								<label class="reg-label">Your email</label>
 							</div>
 							<div class="form-group">
-								<input id="registration-form-pass" type="password" pattern="^.{7,}$" title="minimum 7 symbols" class="reg-input" placeholder=" " required>
+								<input id="registration-form-pass" type="password" name="password" pattern="^.{7,}$" title="minimum 7 symbols" class="reg-input" placeholder=" " required>
 								<label class="reg-label">Your password</label>
 							</div>
 							<div class="form-group">
@@ -246,7 +246,9 @@
 						<input id="price" class="filters" type="text" placeholder="Price" required></input>
 						<input id="yearbuilt" class="filters" type="number" min="1800" maxlength="4" placeholder="Year built"></input>
 						<textarea id="descr" class="filters filter-descr" placeholder="Property description" rows="10" cols="30"></textarea>
-						<input id="addpic" class="filters wide" type="text" placeholder="Add picture">
+						<div id="add-house-pics" class="left">
+							<div class="add-house-new-pic"><input name="addpic" class="addpic filters wide" type="text" placeholder="Add picture"></div>
+						</div>
 					</form>
 					<button id="add-prop" form="add-house-form" type="submit" class="button button-filter">Add</button>
 				 </div>
@@ -597,7 +599,7 @@
 		<div id='search' data-name="page_search" class="page_element">
 			<div class="content">
 			  <h3>Search results</h3>
-			  <ul id='search-results'>
+			  <ul id='search-results' class="search-res">
 				<li id="search-row-no-results" class="hidden">No results found</li>
 				<li id="search-results-row-template" class="hidden"><a class="inner-link" href="#"></a></li>
 			  </ul>

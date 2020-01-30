@@ -25,28 +25,29 @@
                     </li>
                     <li><a class="link innerLink" href="index.html?p=contacts">CONTACTS</a></li>
                 </ul>     
+                <div class="search-bar">
+                      <form id="searchForm">
+                        <button type="submit" class="button-search">
+                        </button>
+                        <input id="searchString" class="search-text" type="text" placeholder="Type to search">
+                    </form>    
+                </div> 
                 <div>
-                    <ul id="menu-link-reg-log" class="nav-menu hidden">
+                    <ul id="menu-link-reg-log" class="nav-menu">
                         <li><a class="link innerLink" href="index.html?p=login_page">
                             <span class="log">LOGIN</span></a>
                         </li>
                     </ul>
-                    <ul id="meny-link-profile-logaut" class="nav-menu">
+                    <ul id="meny-link-profile-logaut" class="nav-menu hidden">
                         <li class="drop"><span class="link">PROFILE</span>
                             <ul class="drop-menu drop-menu-owner">
-                                <li><a class="link innerLink" href="index.html?p=">My property</a></li>
+                                <li><a class="link innerLink" href="index.html?p=owners_prop">My property</a></li>
                                 <li><a class="link innerLink" href="index.html?p=serv_owners">Add property</a></li>
                             </ul>
                         </li>
-                        <span class="link out"></span>
+                        <a id="site-logout-link" class="link" href="index.html?p="><span class="link out"></span></a>
                     </ul>
                 </div>
-                <form id="searchForm" class="search-bar">
-                    <button type="submit" class="button-search">
-                        <span class="search"></span>
-                    </button>
-                    <input id="searchString" class="search-text" type="text" placeholder="Type to search">
-                </form>     
             </nav>
             <div class="slider">
                 <video class="main-video" src="media/main_video.mp4" autoplay loop muted></video>

@@ -74,15 +74,6 @@ body {
 .reg-button {
     margin: 2rem 0;
 }
-.button-search {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    position: relative;
-    padding: .3rem;
-    padding-left: 0;
-    border-radius: .25rem;
-}
 .link-button {
     list-style: none;
 }
@@ -102,7 +93,7 @@ header {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: rgba(222, 222, 210, 0);
     position: fixed;
     z-index: 1;
@@ -134,6 +125,7 @@ header {
 .link {
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
 .link:hover {
     color: white;
@@ -651,24 +643,36 @@ main {
 }
 
 /*===================== Search ======================*/
-.search::before {
+.button-search {
+    border: none;
+    outline: none;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    padding: .3rem;
+    padding-left: 0;
+    border-radius: .25rem;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+}
+.button-search::before {
     font: normal 120% FontAwesome;
     content: '\f002';
     margin-left: .5rem;  
 }
 .search-bar {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
+    position: relative;
+    width: 15rem;
+    height: 3rem;
     background: none;
-    border-radius: .25rem;
     padding: .5rem;
-    z-index: 2;
+    border-radius: .25rem;
 }
 .search-text {
-    width: 80%;
     display: none;
+    width: 80%;
+    height: 2rem;
     border: none;
     outline: none;
     overflow: hidden;
@@ -676,15 +680,14 @@ main {
     background-color: transparent;
 }
 .search-bar:hover {
-    width: 15rem;
     background-color: white;
     transition-duration: .3s;
 }
-.search-bar:hover > .button-search {
+.search-bar:hover .button-search {
     border: 1px solid rgb(180, 180, 173);
     background-color: rgba(222, 222, 210);
 }
-.search-bar:hover > .search-text {
+.search-bar:hover .search-text {
     display: block;
 }
 
@@ -741,4 +744,16 @@ main {
 .hide::before {
     font: normal 2.5rem FontAwesome;
     content: '\f106';
+}
+
+.delete-cross {
+    padding: 5px;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+
+}
+
+.left {
+    text-align: left;
 }

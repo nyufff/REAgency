@@ -61,6 +61,25 @@ class Router {
 	    	let url = router.createURL(urlParams);
 	    	router.changePage(url, urlParams);
 		});
+		document.getElementById('site-logout-link').addEventListener('click', function(event) {
+			event.preventDefault();
+			let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
+			if (typeof loggedInUsers != 'object' || loggedInUsers == null) {
+				loggedInUsers = {};
+			}
+			// console.log(loggedInUsers)
+			for (let u in loggedInUsers) {
+				// console.log(router.user['id'], loggedInUsers[u])
+				if (router.user['id'] == loggedInUsers[u]) {
+					delete loggedInUsers[u];
+				}
+			}
+			sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
+	    	let urlParams = {p: ''};
+	    	let url = router.createURL(urlParams);
+	    	router.changePage(url, urlParams);
+
+		});
 	}
 
 	setTemplate(urlParams) {
@@ -102,14 +121,20 @@ class Router {
 
 		let user = false;
 		let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
+		if (typeof loggedInUsers != 'object' || loggedInUsers == null) {
+			loggedInUsers = {};
+		}
+
 		if (typeof loggedInUsers[hash] == 'undefined') {
-			document.getElementById('menu-link-registration').classList.remove('hidden');
+			document.getElementById('menu-link-reg-log').classList.remove('hidden');
+			document.getElementById('meny-link-profile-logaut').classList.add('hidden');
 			return false;
 		} else {
-			document.getElementById('menu-link-registration').classList.add('hidden');
+			document.getElementById('menu-link-reg-log').classList.add('hidden');
+			document.getElementById('meny-link-profile-logaut').classList.remove('hidden');
 			let users = JSON.parse(localStorage.getItem('users'));
 			if (typeof users[loggedInUsers[hash]] != 'undefined') {
-				return users[loggedInUsers[hash]];
+				this.user = users[loggedInUsers[hash]];
 			}
 		}
 		
@@ -118,7 +143,7 @@ class Router {
 	}
 
 	setPage (urlParams) {
-		let user = this.getUser();
+		this.getUser();
 
 		if (urlParams['p'] == 'serv_rent') {
 			this.setPageHouses(urlParams);
@@ -129,6 +154,66 @@ class Router {
 		else if (urlParams['p'] == 'login_page') {
 			this.logreg(urlParams);
 		}
+		else if (urlParams['p'] == 'serv_owners') {
+			this.newHouse(urlParams);
+		}
+
+	}
+
+	newHouse(urlParams) {
+		let app = this;
+		document.getElementById('add-house-form').addEventListener('submit', function(event) {
+			event.preventDefault();
+			let newHouse = {};
+
+			let validation = true
+			Array.from(document.querySelectorAll('#add-house-form input, #add-house-form select, #add-house-form textarea')).forEach(function(el) {
+				if (el.value.replace(/[^a-zA-Z0-9.-@#$\"\'"]/g, '') != el.value || el.value.length < 1) { 
+					validation = false; 
+				} else {
+					newHouse[el.id] = el.value;
+				}
+			});
+
+			if (validation) {
+				document.getElementById('page-info').innerHTML = "Wrong data. Fix and try again";
+				return false;
+			}
+
+console.log(this.user)
+			newHouse['userid'] = this.user['id'];
+			console.log(newHouse);
+		});
+
+		app.newPickEvent();
+
+	}
+
+
+	newPickEvent() {
+		let app = this;
+		Array.from(document.querySelectorAll('.addpic')).forEach(el => {
+			el.addEventListener('change', function(event) {
+				let allFilled = Array.from(document.querySelectorAll('.addpic')).every(function(el2) {
+					return el2.value != '';
+				})
+				if (allFilled) {
+					let picInput = document.querySelector('.add-house-new-pic').innerHTML;
+					let newPic = document.querySelector('.add-house-new-pic').cloneNode();
+					newPic.innerHTML = picInput;
+					newPic.insertAdjacentHTML('beforeend', "<span class='add-house-delete-pic delete-cross link'> x</span>");
+					document.getElementById('add-house-pics').appendChild(newPic);
+					app.newPickEvent();
+				}
+			});
+		});
+
+		Array.from(document.querySelectorAll('.add-house-delete-pic')).forEach(el => {
+			el.addEventListener('click', function(event) {
+				event.currentTarget.parentNode.remove();
+			});
+		});
+
 
 	}
 
@@ -136,7 +221,7 @@ class Router {
 
 		let router = this;
 		//registration
-		document.getElementById('registration-form').addEventListener('submit', function(event){
+		document.getElementById('registration-form').addEventListener('submit', function(event) {
 			event.preventDefault();
 			let users = JSON.parse(localStorage.getItem('users'));
 			let name = document.getElementById('registration-form-name').value;
@@ -186,6 +271,10 @@ class Router {
 			}
 
 			let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
+			console.log(typeof loggedInUsers);
+			if (typeof loggedInUsers != 'object' || loggedInUsers == null) {
+				loggedInUsers = {};
+			}
 			let hash = ''; 
 			do {
 				hash = '';
@@ -193,8 +282,9 @@ class Router {
 					let r = Math.random().toString(36).substring(10);
 					hash += r;
 				}
+				console.log(loggedInUsers);
 			} while (typeof loggedInUsers[hash] != 'undefined');
-			
+			console.log (users, user)
 			loggedInUsers[hash] = user['id'];
 			sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
 			document.cookie = "h=" + hash;
