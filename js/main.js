@@ -26,10 +26,10 @@ class Router {
 
 		this.templates = {'': 'page_home', 'home': 'page_home', 'about_us': 'page_about_us',
 								'services': 'page_services', 'serv_rent': 'page_serv_rent', 'search': 'page_search',
-								'serv_owners': 'page_serv_owners', 'prop_manag': 'page_prop_manag',
+								'serv_owners': 'page_serv_owners', 'owners_prop': 'page_owners_prop', 'prop_manag': 'page_prop_manag',
 								'contacts': 'page_contacts', 'login_page': 'page_login_page'};
 		this.pagesTitles = {'page_home': 'Home', 'page_about_us': 'About Us', 'page_services': 'Services',
-							'page_serv_rent': 'Buy/Rent', 'page_serv_owners': 'For Owners', 
+							'page_serv_rent': 'Buy/Rent', 'page_serv_owners': 'Add Propperty', 'page_owners_prop': 'Your Property', 
 							'page_prop_manag': 'Property Management', 'page_contacts': 'Contact Us',
 							'page_login_page': "Log In"};
 		this.mainFile = 'index.html';
@@ -197,7 +197,7 @@ class Router {
 			
 			loggedInUsers[hash] = user['id'];
 			sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
-			document.cookie = "h=" + hash + "; max-age=3600";
+			document.cookie = "h=" + hash;
 
 			urlParams['p'] = '';
 			let url = router.createURL(urlParams);
@@ -410,10 +410,6 @@ class Router {
 
 
 window.onload = function() {
-	document.cookie = "h2=asdf; max-age=3600";
-	document.cookie = "h3=1234; max-age=3600";
-	document.cookie = "h4=fdsagdsf; max-age=3600";
-	sessionStorage.setItem('users', JSON.stringify({}));
 	let router = new Router();
 	let urlParams = router.parseURL(window.location.href);
 	router.changePage(window.location.href, urlParams);

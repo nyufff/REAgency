@@ -175,6 +175,74 @@
 			</div>
 		</div>
 
+		<div id="serv_owners" data-name="page_serv_owners" class="page_element">
+			<div class="content">
+				<img class="homePic" src="media/2.png">
+				<div class="text">
+					<h1>Selling and leasing has never been easier</h1>
+					<p class="main-text">
+						Join thousands of other owners and keep it simple with Real Estate Agency.
+						Fill the form below and your property will be added to our database, which 
+						is one of the largest in US. Do you still have any questions? Feel free to 
+						contact us and our professionals will provide you with all needed information.
+					</p>
+				</div>
+				<div class="container container-filter">
+					<form action="#" class="form">
+						<select class="filters" name="dealtype" required>
+							<option value="0" disabled selected>Type of transaction</option>
+							<option value="1">Sale</option>
+							<option value="2">Rent out</option>
+						</select>
+						<input id="zip" class="filters thin" type="text" placeholder="Zip" maxlength="5" required>
+						<input id="address" class="filters wide" type="text" placeholder="Address" required>
+						<input id="floors" class="filters" type="number" min="1" placeholder="Number of floors" required>
+						<input id="bedrooms" class="filters" type="text" placeholder="Number of bedrooms" required>
+						<input id="bathrooms" class="filters" type="number" min="0" placeholder="Number of bathrooms" required>
+						<input id="area" class="filters" type="number" placeholder="Total area">
+						<input id="price" class="filters" type="text" placeholder="Price" required></input>
+						<input id="yearbuilt" class="filters" type="number" min="1800" maxlength="4" placeholder="Year built"></input>
+						<textarea id="descr" class="filters filter-descr" placeholder="Property description" rows="10" cols="30"></textarea>
+						<input id="addpic" class="filters wide" type="text" placeholder="Add picture">
+					</form>
+					<button id="add-prop" class="button button-filter">Add</button>
+				 </div>
+			</div>
+		</div>
+
+		<div id="owners_prop" data-name="page_owners_prop" class="page_element">
+			<div class="content">
+				<h1>Your property</h1>
+				<div id="templ" class=''>
+					<div class="card owner-card">
+						<div class="img-box">
+							<img src="media/house1.jpg" class="img-prop">
+						</div>
+						<div class="text-box">
+							<b><span class="zip">98122</span></b>
+							<span class="dealtype">Sale</span>
+							<h3 class="address">3052 Lake St</h3>
+							<div class="prop-info">
+								<span>Floors: <span class="floors">5</span></span>
+								<span>Bedrooms: <span class="bedrooms">5</span></span>
+								<span>Bathrooms: <span class="bathrooms">2</span></span>
+								<span><span class="area">1078</span> ft<sup>2</sup></span>
+								<span>Year built: <span class="year">2010</span></span>
+							</div>
+							<span><span class="price">12345678</span> $</span>
+							<p class="descr">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+								enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+								nisi ut aliquip ex ea commodo consequat.
+							</p>
+							<button class="button button-prop">Delete property</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	    <div id="about_us" data-name="page_about_us" class="page_element">
 		    <div class="content">
 				<img class="homePic" src="media/3.png" alt="house">
@@ -409,69 +477,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-
-		<div id="serv_owners" data-name="page_serv_owners" class="page_element">
-			<div class="content">
-				<img class="homePic" src="media/2.png">
-				<div class="text">
-					<h1>Selling and leasing has never been easier</h1>
-					<p class="main-text">
-						Join thousands of other owners and keep it simple with Real Estate Agency.
-						Fill the form below and your property will be added to our database, which 
-						is one of the largest in US. Do you still have any questions? Feel free to 
-						contact us and our professionals will provide you with all needed information.
-					</p>
-				</div>
-				<div class="container container-filter">
-					<form action="#" class="form">
-						<select class="filters" name="dealtype" required>
-							<option value="0" disabled selected>Type of transaction</option>
-							<option value="1">Sale</option>
-							<option value="2">Rent out</option>
-						</select>
-						<input id="zip" class="filters thin" type="text" placeholder="Zip" maxlength="5" required>
-						<input id="address" class="filters wide" type="text" placeholder="Address" required>
-						<input id="floors" class="filters" type="number" min="1" placeholder="Number of floors" required>
-						<input id="bedrooms" class="filters" type="text" placeholder="Number of bedrooms" required>
-						<input id="bathrooms" class="filters" type="number" min="0" placeholder="Number of bathrooms" required>
-						<input id="area" class="filters" type="number" placeholder="Total area">
-						<input id="price" class="filters" type="text" placeholder="Price" required></input>
-						<input id="yearbuilt" class="filters" type="number" min="1800" maxlength="4" placeholder="Year built"></input>
-						<textarea id="descr" class="filters filter-descr" placeholder="Property description" rows="10" cols="30"></textarea>
-						<input id="addpic" class="filters wide" type="text" placeholder="Add picture">
-					</form>
-					<button id="add-prop" class="button button-filter">Add</button>
-				 </div>
-				 <h2>Your property</h2>
-				 <div id="templ" class=''>
-					 <div class="card owner-card">
-						 <div class="img-box">
-							 <img src="media/house1.jpg" class="img-prop">
-						 </div>
-						 <div class="text-box">
-							 <b><span class="zip">98122</span></b>
-							 <span class="dealtype">Sale</span>
-							 <h3 class="address">3052 Lake St</h3>
-							 <div class="prop-info">
-								 <span>Floors: <span class="floors">5</span></span>
-								 <span>Bedrooms: <span class="bedrooms">5</span></span>
-								 <span>Bathrooms: <span class="bathrooms">2</span></span>
-								 <span><span class="area">1078</span> ft<sup>2</sup></span>
-								 <span>Year built: <span class="year">2010</span></span>
-							 </div>
-							 <span><span class="price">12345678</span> $</span>
-							 <p class="descr">
-								 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-								 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-								 enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-								 nisi ut aliquip ex ea commodo consequat.
-							 </p>
-							 <button class="button button-prop">Delete property</button>
-						 </div>
-					 </div>
-				 </div>
 			</div>
 		</div>
 

@@ -148,13 +148,25 @@ header {
     left: 16rem;
     padding: 2rem;
 }
+.drop-menu-owner {
+    left: -10%;
+    width: 120%;
+    padding: 1.5rem;
+}
 .drop:hover > .drop-menu {
     visibility: visible;
     background-color: rgba(222, 222, 210, 1);
     transition-duration: .3s;
 }
-.icon-reg {
-    margin-top: 1.8rem;
+.log::before {
+    font: normal 100% FontAwesome;
+    content: '\f2c0';
+    margin-right: .2rem;
+}
+.out::before {
+    font: normal 110% FontAwesome;
+    content: '\f08b';
+    margin-left: .5rem;  
 }
 
 /*=======================Slider=======================*/
