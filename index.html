@@ -24,30 +24,14 @@
                         </ul>
                     </li>
                     <li><a class="link innerLink" href="index.html?p=contacts">CONTACTS</a></li>
-                </ul>
-                <form id="searchForm" class="search-bar">
-                    <input id="searchString" class="search-text" type="text" placeholder="Type to search">
-                    <button type="submit" class="button-search">
-                    <svg class="icon">
-                        <g>
-                            <path d="M9.186 1.917a4.82 4.82 0 0 0-4.814 4.814 4.819 4.819 0 0 0 4.814 4.815A4.82 
-                            4.82 0 0 0 14 6.732a4.82 4.82 0 0 0-4.814-4.815m0 10.729A5.92 5.92 0 0 1 3.272 6.73 
-                            5.92 5.92 0 0 1 9.186.818 5.92 5.92 0 0 1 15.1 6.73a5.92 5.92 0 0 1-5.914 5.915"/>
-                            <path d="M.55 16a.55.55 0 0 1-.39-.938l3.99-3.99a.55.55 0 0 1 .778.778l-3.99 3.989
-                            A.549.549 0 0 1 .55 16" />
-                        </g>
-                    </svg>
-                    </button>
-                </form>          
-                <div id="menu-link-registration">
-                    <ul class="nav-menu hidden">
+                </ul>     
+                <div>
+                    <ul id="menu-link-reg-log" class="nav-menu hidden">
                         <li><a class="link innerLink" href="index.html?p=login_page">
                             <span class="log">LOGIN</span></a>
                         </li>
                     </ul>
-                </div>
-                <div>
-                    <ul class="nav-menu">
+                    <ul id="meny-link-profile-logaut" class="nav-menu">
                         <li class="drop"><span class="link">PROFILE</span>
                             <ul class="drop-menu drop-menu-owner">
                                 <li><a class="link innerLink" href="index.html?p=">My property</a></li>
@@ -57,6 +41,12 @@
                         <span class="link out"></span>
                     </ul>
                 </div>
+                <form id="searchForm" class="search-bar">
+                    <button type="submit" class="button-search">
+                        <span class="search"></span>
+                    </button>
+                    <input id="searchString" class="search-text" type="text" placeholder="Type to search">
+                </form>     
             </nav>
             <div class="slider">
                 <video class="main-video" src="media/main_video.mp4" autoplay loop muted></video>

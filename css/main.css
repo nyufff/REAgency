@@ -75,12 +75,13 @@ body {
     margin: 2rem 0;
 }
 .button-search {
-    width: 30px;
-    height: 30px;
     border: none;
     outline: none;
     background-color: transparent;
-    padding: 2% 0 0 2%;
+    position: relative;
+    padding: .3rem;
+    padding-left: 0;
+    border-radius: .25rem;
 }
 .link-button {
     list-style: none;
@@ -167,6 +168,9 @@ header {
     font: normal 110% FontAwesome;
     content: '\f08b';
     margin-left: .5rem;  
+}
+.hidden {
+    display: none;
 }
 
 /*=======================Slider=======================*/
@@ -647,20 +651,23 @@ main {
 }
 
 /*===================== Search ======================*/
+.search::before {
+    font: normal 120% FontAwesome;
+    content: '\f002';
+    margin-left: .5rem;  
+}
 .search-bar {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
     background: none;
-    border-radius: .25em;
-    padding: .5%;
-    position: fixed;
-    right: 2%;
-    top: 4.5%;
+    border-radius: .25rem;
+    padding: .5rem;
+    z-index: 2;
 }
 .search-text {
-    width: 85%;
+    width: 80%;
     display: none;
     border: none;
     outline: none;
@@ -669,19 +676,17 @@ main {
     background-color: transparent;
 }
 .search-bar:hover {
-    width: 22%;
+    width: 15rem;
     background-color: white;
     transition-duration: .3s;
 }
 .search-bar:hover > .button-search {
     border: 1px solid rgb(180, 180, 173);
     background-color: rgba(222, 222, 210);
-    border-radius: .25em;
 }
 .search-bar:hover > .search-text {
     display: block;
 }
-.hidden {display: none;}
 
 /* ================= Not found ===================== */
 #content404 {
