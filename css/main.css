@@ -293,7 +293,7 @@ main {
 /*=================== Buy/Rent ====================*/
 .container-side-filter {
     width: 20rem;
-    max-height: 32rem;
+    max-height: 34rem;
     margin: 0 1%;
     color: #757575;
     font-family: serif;
@@ -345,6 +345,7 @@ main {
     width: 300px;
     height: 300px;
     flex: none;
+    margin-top: 20px;
 }
 .img-prop {
     width: 100%;

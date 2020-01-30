@@ -1,16 +1,17 @@
-	
+
 class SPA {
 
 	constructor () {
 
 		this.templates = {'': 'page_home', 'home': 'page_home', 'about_us': 'page_about_us',
 								'services': 'page_services', 'serv_rent': 'page_serv_rent', 'search': 'page_search',
-								'serv_owners': 'page_serv_owners', 'owners_prop': 'page_serv_rent', 'prop_manag': 'page_prop_manag',
+								'serv_owners': 'page_serv_owners', 'owners_prop': 'page_serv_rent', 
+								'prop_manag': 'page_prop_manag', 'prop_card': 'page_prop_card',
 								'contacts': 'page_contacts', 'login_page': 'page_login_page'};
 		this.pagesTitles = {'home': '', '': '', 'about_us': 'About Us', 'services': 'Services',
 							'serv_rent': 'Buy/Rent', 'serv_owners': 'Add Propperty', 'owners_prop': 'Your Property', 
 							'prop_manag': 'Property Management', 'contacts': 'Contact Us', 'search': 'Search',
-							'page_login_page': "Log In"};
+							'login_page': "", 'prop_card': '',};
 		this.mainFile = 'index.html';
 		this.pagPerPage = 10;
 
@@ -70,7 +71,7 @@ class SPA {
 		if (typeof template == 'string') {
 			document.title = this.pagesTitles[urlParams['p']];
 			document.getElementById('main').innerHTML = template;
-			document.getElementById('page_title').innerHTML = this.pagesTitles[urlParams['p']];
+			document.getElementById('page-title').innerHTML = this.pagesTitles[urlParams['p']];
 			return true;
 		}
 
@@ -81,11 +82,21 @@ class SPA {
 	}
 
 	changePage(url, urlParams) {
+		this.previousUrl = window.location.href;
+		this.previousUrlParams = this.parseURL(window.location.href);
 		window.history.replaceState({}, "Title", url);
     	if (this.setTemplate(urlParams)) {
     		this.setPage(urlParams);
     	}
 	}
+
+
+	goBack() {
+		if (this.previousUrl != window.location.href) {
+			this.changePage(this.previousUrl, this.previousUrlParams);
+		}
+	}
+
 
 	getUser() {
 		let cookies = document.cookie;
@@ -147,6 +158,53 @@ class SPA {
 		else if (urlParams['p'] == 'owners_prop') {
 			this.setPageHouses(urlParams);
 		}
+		else if (urlParams['p'] == 'prop_card') {
+			this.setPageHouseGallery(urlParams);
+		}
+
+	}
+
+	setPageHouseGallery(urlParams) {
+
+		let houses = JSON.parse(localStorage.getItem('houses'));
+		if (typeof urlParams['houseid'] == 'undefined' || typeof houses[urlParams['houseid']] == 'undefined') { 
+			let urlParams = {p: 'serv_rent'};
+			let url = this.createURL(urlParams);
+			this.changePage(url, urlParams);
+			return false;
+		}
+		let house  = houses[urlParams['houseid']];
+
+		let prop = document.getElementById('house-prop-box');
+		let images = JSON.parse(localStorage.getItem('images'));
+		let galleryBox = document.getElementById('house-gallery-box');
+		for (let im in images) {
+			if (images[im]['houseId'] == urlParams['houseid']) {
+				let img = galleryBox.querySelector('.img-box').cloneNode(true);
+				img.classList.remove('hidden');
+				img.querySelector('img').src = images[im]['link'];
+				galleryBox.appendChild(img);
+			}
+		}
+
+		prop.querySelector('.address').innerHTML = house['address'];
+		prop.querySelector('.zip').innerHTML = house['zip'];
+		prop.querySelector('.bedrooms').innerHTML = house['bedrooms'];
+		prop.querySelector('.bathrooms').innerHTML = house['bathrooms'];
+		prop.querySelector('.year').innerHTML = house['yearbuilt'];
+		prop.querySelector('.floors').innerHTML = house['floors'];
+		prop.querySelector('.price').innerHTML = house['price'];
+		prop.querySelector('.descr').innerHTML = house['description'];
+		if (house['userid'] == this.user['id']) {
+			'&origin=' + urlParams['p'];
+			prop.querySelector('.houses-delete-property-btn').dataset['id'] = house['id'];
+			prop.querySelector('.houses-delete-property-btn').classList.remove('hidden');
+			if (typeof urlParams['origin'] != 'undefined') {
+				prop.querySelector('.houses-delete-property-btn').dataset['origin'] = urlParams['origin'];
+			}
+		}
+
+		this.setHouseDeleteEvent();
 
 	}
 
@@ -300,7 +358,7 @@ class SPA {
 			sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
 			document.cookie = "h=" + hash;
 
-			urlParams['p'] = '';
+			urlParams['p'] = 'owners_prop';
 			let url = app.createURL(urlParams);
 			app.changePage(url, urlParams);
 		});
@@ -340,7 +398,42 @@ class SPA {
 		    	app.changePage(url, urlParams);
 		    });
 		});
+
 	}
+
+	setHouseDeleteEvent() {
+		let app = this;
+		Array.from(document.querySelectorAll(".houses-delete-property-btn")).forEach(link => {
+		    link.addEventListener('click', function(event) {
+		    	let t = confirm("Are you sure? After clicking yes you will not be able to recover this property.")
+		    	if (!t) { return false; }
+		    	if (typeof event.currentTarget.dataset['id'] == 'undefined' || event.currentTarget.dataset['id'] == '') { return false; }
+		    	let houseId = event.currentTarget.dataset['id'];
+		    	let houses = JSON.parse(localStorage.getItem('houses'));
+		    	if (typeof houses[houseId] == 'undefined' || houses[houseId]['userid'] != app.user['id']) { return false; }
+		    	
+		    	delete houses[houseId];
+		    	localStorage.setItem('houses', JSON.stringify(houses));
+		    	let images = JSON.parse(localStorage.getItem('images'));
+		    	for (let im in images) {
+		    		if (images[im]['houseId'] == houseId) {
+		    			delete images[im];
+		    		}
+		    	}
+		    	localStorage.setItem('images', JSON.stringify(images));
+
+		    	let url = window.location.href;
+		    	let urlParams = app.parseURL(url);
+				if (typeof event.currentTarget.dataset['origin'] != 'undefined' &&  event.currentTarget.dataset['origin'] != '') {
+					urlParams['p'] = event.currentTarget.dataset['origin'];
+					url = app.createURL(urlParams);
+				}
+
+		    	app.changePage(url, urlParams);
+		    });
+		});
+	}
+
 
 	parseURL (url) {
 		let urlParams = {};
@@ -461,20 +554,29 @@ class SPA {
 				let propTemplate = document.getElementById("propTemplate").cloneNode(true);
 				propTemplate.setAttribute('id', 'propTemplateCandidate');
 				wrapper.appendChild(propTemplate);
+				let prop = document.querySelector('#propTemplateCandidate');
 				if (typeof houseImages[housesForPage[i][0]['id']] != 'undefined' && typeof houseImages[housesForPage[i][0]['id']][0] != 'undefined') {
-					document.querySelector('#propTemplateCandidate .img-prop').src = houseImages[housesForPage[i][0]['id']][0]['link'];
+					prop.querySelector('.img-prop').src = houseImages[housesForPage[i][0]['id']][0]['link'];
 				}
-				document.querySelector('#propTemplateCandidate .address').innerHTML = housesForPage[i][0]['address'];
-				document.querySelector('#propTemplateCandidate .address').innerHTML = housesForPage[i][0]['address'];
-				document.querySelector('#propTemplateCandidate .zip').innerHTML = housesForPage[i][0]['zip'];
-				document.querySelector('#propTemplateCandidate .bedrooms').innerHTML = housesForPage[i][0]['bedrooms'];
-				document.querySelector('#propTemplateCandidate .bathrooms').innerHTML = housesForPage[i][0]['bathrooms'];
-				document.querySelector('#propTemplateCandidate .year').innerHTML = housesForPage[i][0]['yearbuilt'];
-				document.querySelector('#propTemplateCandidate .floors').innerHTML = housesForPage[i][0]['floors'];
-				document.querySelector('#propTemplateCandidate .price').innerHTML = housesForPage[i][0]['price'];
-				document.querySelector('#propTemplateCandidate .descr').innerHTML = housesForPage[i][0]['description'];
-				document.querySelector('#propTemplateCandidate').classList.remove('hidden');
-				document.querySelector('#propTemplateCandidate').removeAttribute('id');
+				let href = prop.querySelector('.house-gallery-link').href;
+				href = href + housesForPage[i][0]['id'] + '&origin=' + urlParams['p'];
+
+				Array.from(prop.querySelectorAll('.house-gallery-link')).forEach(el => {el.href = href;});
+				prop.querySelector('.address').innerHTML = housesForPage[i][0]['address'];
+				prop.querySelector('.zip').innerHTML = housesForPage[i][0]['zip'];
+				prop.querySelector('.bedrooms').innerHTML = housesForPage[i][0]['bedrooms'];
+				prop.querySelector('.bathrooms').innerHTML = housesForPage[i][0]['bathrooms'];
+				prop.querySelector('.year').innerHTML = housesForPage[i][0]['yearbuilt'];
+				prop.querySelector('.floors').innerHTML = housesForPage[i][0]['floors'];
+				prop.querySelector('.price').innerHTML = housesForPage[i][0]['price'];
+				prop.querySelector('.descr').innerHTML = housesForPage[i][0]['description'];
+				if (housesForPage[i][0]['userid'] == this.user['id']) {
+					prop.querySelector('.houses-delete-property-btn').dataset['id'] = housesForPage[i][0]['id'];
+					prop.querySelector('.houses-delete-property-btn').dataset['origin'] = urlParams['p'];
+					prop.querySelector('.houses-delete-property-btn').classList.remove('hidden');
+				}
+				prop.classList.remove('hidden');
+				prop.removeAttribute('id');
 			}
 
 			// pagination buttons
@@ -502,13 +604,15 @@ class SPA {
 					document.getElementById('houses-pag-num-' + (i + 3)).classList.remove('hidden');
 				}
 			}
-			for(let par in urlParams) {
-				if(document.getElementById('houses-filter-' + par)) {
-					document.getElementById('houses-filter-' + par).value = urlParams[par];
-				}
-			}
-			this.setHomesEvents(urlParams);
+			this.setHouseDeleteEvent();
 		}
+
+		for(let par in urlParams) {
+			if(document.getElementById('houses-filter-' + par)) {
+				document.getElementById('houses-filter-' + par).value = urlParams[par];
+			}
+		}
+		this.setHomesEvents(urlParams);
 	}
 
 

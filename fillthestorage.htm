@@ -7,9 +7,9 @@
 
 	<script type="text/javascript">
 		window.onload = function(){
-		Array.from(document.querySelectorAll('.page_element')).forEach(function(el){
-			window.localStorage.setItem(el.dataset['name'], JSON.stringify(document.getElementById(el.id).innerHTML));
-		});
+			Array.from(document.querySelectorAll('.page_element')).forEach(function(el){
+				window.localStorage.setItem(el.dataset['name'], JSON.stringify(document.getElementById(el.id).innerHTML));
+			});
 		}
     </script>
 
@@ -36,11 +36,11 @@
 
         let users = {
 			1: {id: 1, name: 'Fred Flintstone', login: 'fred@example.com', pass: 'stone'},
-            2: {id: 2, name: 'Marta Spring', login: 'marta@example.com', pass: 'love'},
+            2: {id: 2, name: "qwerwqe", login: "222@example.com", pass: "sadfasdfs"},
             3: {id: 3, name: 'Tiranosaurus Rez', login: 'rex@example.com', pass: 'meat'},
             4: {id: 4, name: 'Bob Pants', login: 'bob@example.com', pass: 'pants'},
             5: {id: 5, name: 'Nick White', login: 'nick@example.com', pass: 'bread'},
-            6: {id: 6, name: "qwerwqe", login: "222@4455.com.ua", pass: "sadfasdfs"}
+			6: {id: 6, name: 'Marta Spring', login: 'marta@example.com', pass: 'love'}
 		};
         window.localStorage.setItem('users', JSON.stringify(users));
 
@@ -159,7 +159,7 @@
 
 	    <div id="home" data-name="page_home" class="page_element">
 			<div class="content">
-		    	<h1 id="page_title"></h1>
+		    	<h1 id="page-title"></h1>
 				<div class="line line-wide"></div>
 				<div class="text">
 					<h1>Nobody does it better than Real Estate Agency.<br>So you'll never miss out</h1>
@@ -170,6 +170,7 @@
 
 		<div id="login_page" data-name="page_login_page" class="page_element">
 			<div class="content">
+				<h1 id="page-title"></h1>
 				<div id="reg-login-info"></div>
 				<div class="container reg-container">
 					<input id="log" name="switch" type="radio">
@@ -214,7 +215,7 @@
 
 		<div id="serv_owners" data-name="page_serv_owners" class="page_element">
 			<div class="content">
-				<h1 id="page_title"></h1>
+				<h1 id="page-title"></h1>
 				<img class="homePic" src="media/2.png">
 				<div class="text">
 					<h1>Selling and leasing has never been easier</h1>
@@ -275,7 +276,7 @@
 
 		<div id="owners_prop" data-name="page_owners_prop" class="page_element">
 			<div class="content">
-				<h1 id="page_title"></h1>
+				<h1 id="page-title"></h1>
 				<div id="templ" class=''>
 					<div class="card owner-card">
 						<div class="img-box">
@@ -299,7 +300,7 @@
 								enim ad minim veniam, quis nostrud exercitation ullamco laboris 
 								nisi ut aliquip ex ea commodo consequat.
 							</p>
-							<button class="button button-prop">Delete property</button>
+							<button class="houses-delete-property-btn button button-prop hidden" data-id="">Delete property</button>
 						</div>
 					</div>
 				</div>
@@ -308,7 +309,7 @@
 
 	    <div id="about_us" data-name="page_about_us" class="page_element">
 		    <div class="content">
-		    	<h1 id="page_title"></h1>
+		    	<h1 id="page-title"></h1>
 				<img class="homePic" src="media/3.png" alt="house">
 				<div class="text">
 					<h1>We have been working successfully for you since 2000</h1>
@@ -363,7 +364,7 @@
 	    	
 	    <div id="services"  data-name="page_services" class="page_element">
 			<div class="content">
-				<h1 id="page_title"></h1>
+				<h1 id="page-title"></h1>
 				<div class="box">
 					<div class="sq-serv">
 						<h2 class="h2">Buy or rent a home</h2>
@@ -405,7 +406,7 @@
 
 		<div id="serv_rent" data-name="page_serv_rent" class="page_element">
 			<div class="content">
-				<h1 id="page_title"></h1>
+				<h1 id="page-title"></h1>
 				<div class="box">
 					<div class="container container-side-filter">
 						<form id="houses-filters-form" action="" class="form" method="GET">
@@ -425,7 +426,7 @@
 							<p class="label">Number of bedrooms</p>
 							<div>
 								<label>From:</label>
-								<input id="houses-filter-bedrmmin" class="filters short" type="number" name="bedrnmin" step="1" min="0" max="10000000">
+								<input id="houses-filter-bedrmmin" class="filters short" type="number" name="bedrmmin" step="1" min="0" max="10000000">
 								<label>To:</label>
 								<input id="houses-filter-bedrmmax" class="filters short" type="number" name="bedrmmax" step="1" min="0" max="10000000">
 							</div>
@@ -470,7 +471,9 @@
 							<div id="propTemplate" class='hidden'>
 								<div class=" card">
 									<div class="img-box">
-										<img src="media/house1.jpg" class="img-prop">
+										<a class="innerLink house-gallery-link" href="index.html?p=prop_card&houseid=">
+											<img src="media/house1.jpg" class="img-prop">
+										</a>
 									</div>
 									<div class="text-box">
 										<b><span class="zip">98122</span></b>
@@ -484,13 +487,8 @@
 											<span>Year built: <span class="year">2010</span></span>
 										</div>
 										<span><span class="price">12345678</span> $</span>
-										<p class="descr">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-											eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-											enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-											nisi ut aliquip ex ea commodo consequat.
-										</p>
-										<button class="button button-prop">Request to apply</button>
+										<p class="descr"></p>
+										<button class="houses-delete-property-btn button button-prop hidden" data-id="">Delete property</button>
 									</div>
 								</div>
 							</div>
@@ -513,9 +511,9 @@
 
 		<div id="prop_card" data-name="page_prop_card" class="page_element">
 			<div class="content">
-				<h1 id="page_title"></h1>
+				<h1 id="page-title"></h1>
 				<div class="box">
-					<div class="text-box gallery-text-box">
+					<div id="house-prop-box" class="text-box gallery-text-box">
 						<b><span class="zip">98122</span></b>
 						<span class="dealtype">Sale</span>
 						<h3 class="address">3052 Lake St</h3>
@@ -527,16 +525,11 @@
 							<span>Year built: <span class="year">2010</span></span>
 						</div>
 						<span><span class="price">12345678</span> $</span>
-						<p class="descr">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-							enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-							nisi ut aliquip ex ea commodo consequat.
-						</p>
-						<button class="button button-prop">Request to apply</button>
+						<p class="descr"></p>
+						<button class="houses-delete-property-btn button button-prop hidden" data-id="">Delete property</button>
 					</div>
-					<div class="gallery-box">
-						<div class="img-box">
+					<div class="gallery-box" id="house-gallery-box">
+						<div class="img-box hidden">
 							<img src="media/house1.jpg" class="img-prop">
 						</div>
 					</div>
@@ -546,7 +539,7 @@
 
 		<div id="prop_manag" data-name="page_prop_manag" class="page_element">
 			<div class="content">
-				<h1 id="page_title"></h1>
+				<h1 id="page-title"></h1>
 				<div class="box">
 					<div class="sq-manag">
 						<h2>Getting started</h2>
@@ -594,7 +587,7 @@
 
 		<div id="contacts" data-name="page_contacts" class="page_element">
 			<div class="content">
-				<h1 id="page_title"></h1>
+				<h1 id="page-title"></h1>
 				<img class="homePic" src="media/4.png">
 				<div class="text">
 					<p class="addr">
@@ -618,7 +611,7 @@
 
 		<div id='search' data-name="page_search" class="page_element">
 			<div class="content">
-			  <h1 id="page_title"></h1>
+			  <h1 id="page-title"></h1>
 			  <ul id='search-results' class="search-res">
 				<li id="search-row-no-results" class="hidden">No results found</li>
 				<li id="search-results-row-template" class="hidden"><a class="inner-link" href="#"></a></li>
@@ -628,7 +621,7 @@
 		  
 		<div id='404' data-name="page_404" class="page_element">
 			<div class="content">
-			<h1 id="page_title"></h1>
+			<h1 id="page-title"></h1>
 			  	<div id='content404'>
 				  	<p>Sorry, we don't have this page. Try to use menu above to navigate to one of the pages we have</p>
 			  	</div>
