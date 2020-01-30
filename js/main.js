@@ -1,39 +1,18 @@
-
-	jQuery(document).ready(function($) {
-
-		$(function() {
-			$(main).scroll(function() {
-				if ($(main).scrollTop() != 0) {
-					$('.hide').css({"display": "block"});
-                    $('.footer').css({"display": "none"});
-				}
-				else {
-					$('.footer').css({"display": "flex"});
-                    $('.hide').css({"display": "none"});
-				}
-			});
-			$('.hide').click(
-				function() {
-					$('.footer').css({"display": "flex"});
-					$('.hide').css({"display": "none"});
-				});
-		});	
-	});
 	
-class Router {
+class SPA {
 
 	constructor () {
 
 		this.templates = {'': 'page_home', 'home': 'page_home', 'about_us': 'page_about_us',
 								'services': 'page_services', 'serv_rent': 'page_serv_rent', 'search': 'page_search',
-								'serv_owners': 'page_serv_owners', 'owners_prop': 'page_owners_prop', 'prop_manag': 'page_prop_manag',
+								'serv_owners': 'page_serv_owners', 'owners_prop': 'page_serv_rent', 'prop_manag': 'page_prop_manag',
 								'contacts': 'page_contacts', 'login_page': 'page_login_page'};
-		this.pagesTitles = {'page_home': 'Home', 'page_about_us': 'About Us', 'page_services': 'Services',
-							'page_serv_rent': 'Buy/Rent', 'page_serv_owners': 'Add Propperty', 'page_owners_prop': 'Your Property', 
-							'page_prop_manag': 'Property Management', 'page_contacts': 'Contact Us',
+		this.pagesTitles = {'home': '', '': '', 'about_us': 'About Us', 'services': 'Services',
+							'serv_rent': 'Buy/Rent', 'serv_owners': 'Add Propperty', 'owners_prop': 'Your Property', 
+							'prop_manag': 'Property Management', 'contacts': 'Contact Us', 'search': 'Search',
 							'page_login_page': "Log In"};
 		this.mainFile = 'index.html';
-		this.pagPerPage = 3;
+		this.pagPerPage = 10;
 
 		let url = window.location.href;
 		if (url.indexOf('?') !== -1) {
@@ -45,41 +24,42 @@ class Router {
 	}
 
 	setGlobalEvents () {
-		let router = this;	
+		let app = this;	
 		Array.from(document.querySelectorAll("a.innerLink")).forEach(link => {
 		    link.addEventListener('click', function(event) {
 		    	event.preventDefault();
 		    	let url = event.currentTarget.href
-		    	let urlParams = router.parseURL(url);
-		    	router.changePage(url, urlParams);
+		    	let urlParams = app.parseURL(url);
+		    	app.changePage(url, urlParams);
 		    });
 		});
 		document.getElementById("searchForm").addEventListener('submit', function(event) {
 	    	event.preventDefault();
 	    	let searchString = document.getElementById('searchString').value;
 	    	let urlParams = {p: 'search', q: searchString};
-	    	let url = router.createURL(urlParams);
-	    	router.changePage(url, urlParams);
+	    	let url = app.createURL(urlParams);
+	    	app.changePage(url, urlParams);
 		});
 		document.getElementById('site-logout-link').addEventListener('click', function(event) {
 			event.preventDefault();
-			let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
-			if (typeof loggedInUsers != 'object' || loggedInUsers == null) {
-				loggedInUsers = {};
-			}
-			// console.log(loggedInUsers)
-			for (let u in loggedInUsers) {
-				// console.log(router.user['id'], loggedInUsers[u])
-				if (router.user['id'] == loggedInUsers[u]) {
-					delete loggedInUsers[u];
-				}
-			}
-			sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
-	    	let urlParams = {p: ''};
-	    	let url = router.createURL(urlParams);
-	    	router.changePage(url, urlParams);
-
+			app.logout();
 		});
+	}
+
+	logout () {
+		let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
+		if (typeof loggedInUsers != 'object' || loggedInUsers == null) {
+			loggedInUsers = {};
+		}
+		for (let u in loggedInUsers) {
+			if (this.user['id'] == loggedInUsers[u]) {
+				delete loggedInUsers[u];
+			}
+		}
+		sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
+    	let urlParams = {p: ''};
+    	let url = this.createURL(urlParams);
+    	this.changePage(url, urlParams);
 	}
 
 	setTemplate(urlParams) {
@@ -88,8 +68,9 @@ class Router {
 		}
 		let template = JSON.parse(localStorage.getItem(this.templates[urlParams['p']]));
 		if (typeof template == 'string') {
-			document.title = this.pagesTitles[this.templates[urlParams['p']]];
+			document.title = this.pagesTitles[urlParams['p']];
 			document.getElementById('main').innerHTML = template;
+			document.getElementById('page_title').innerHTML = this.pagesTitles[urlParams['p']];
 			return true;
 		}
 
@@ -121,21 +102,27 @@ class Router {
 
 		let user = false;
 		let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
-		if (typeof loggedInUsers != 'object' || loggedInUsers == null) {
-			loggedInUsers = {};
-		}
 
-		if (typeof loggedInUsers[hash] == 'undefined') {
+		if (!hash || typeof loggedInUsers != 'object' || loggedInUsers == null || typeof loggedInUsers[hash] == 'undefined') {
 			document.getElementById('menu-link-reg-log').classList.remove('hidden');
 			document.getElementById('meny-link-profile-logaut').classList.add('hidden');
+			this.user = {};
 			return false;
 		} else {
-			document.getElementById('menu-link-reg-log').classList.add('hidden');
-			document.getElementById('meny-link-profile-logaut').classList.remove('hidden');
 			let users = JSON.parse(localStorage.getItem('users'));
+
 			if (typeof users[loggedInUsers[hash]] != 'undefined') {
+				document.getElementById('menu-link-reg-log').classList.add('hidden');
+				document.getElementById('meny-link-profile-logaut').classList.remove('hidden');
 				this.user = users[loggedInUsers[hash]];
+			} else {
+				delete loggedInUsers[hash];
+				sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
+		    	let urlParams = {p: ''};
+		    	let url = this.createURL(urlParams);
+		    	this.changePage(url, urlParams);
 			}
+			
 		}
 		
 
@@ -157,6 +144,9 @@ class Router {
 		else if (urlParams['p'] == 'serv_owners') {
 			this.newHouse(urlParams);
 		}
+		else if (urlParams['p'] == 'owners_prop') {
+			this.setPageHouses(urlParams);
+		}
 
 	}
 
@@ -166,23 +156,47 @@ class Router {
 			event.preventDefault();
 			let newHouse = {};
 
-			let validation = true
-			Array.from(document.querySelectorAll('#add-house-form input, #add-house-form select, #add-house-form textarea')).forEach(function(el) {
-				if (el.value.replace(/[^a-zA-Z0-9.-@#$\"\'"]/g, '') != el.value || el.value.length < 1) { 
-					validation = false; 
+			let validation = [];
+			Array.from(document.querySelectorAll('#add-house-form .add-house-param')).forEach(function(el) {
+				if (el.value.replace(/[^a-zA-Z0-9.\-_@#$\"\'\\\/\: ]/g, '') != el.value || (el.attributes.required && el.value.length < 1)) {
+					validation.push(el.name);
 				} else {
-					newHouse[el.id] = el.value;
+					newHouse[el.name] = el.value;
 				}
 			});
 
-			if (validation) {
+			if (validation.length) {
 				document.getElementById('page-info').innerHTML = "Wrong data. Fix and try again";
 				return false;
 			}
 
-console.log(this.user)
-			newHouse['userid'] = this.user['id'];
-			console.log(newHouse);
+			newHouse['userid'] = app.user['id'];
+			let houses = JSON.parse(localStorage.getItem('houses'));
+			let lastId = 0;
+			for (let i in houses) { if (lastId < houses[i]['id']) { lastId = houses[i]['id']; } }
+			newHouse['id'] = ++lastId;
+			houses[lastId] = newHouse;
+			localStorage.setItem('houses', JSON.stringify(houses));
+			document.getElementById('page-info').insertAdjacentHTML('beforeend', "new house is added");
+
+			let pics = [];
+			Array.from(document.querySelectorAll('#add-house-form .add-pic-param')).forEach(function(el) {
+				if (el.value.length < 1) {
+					validation.push(el.name);
+				} else {
+					pics.push(decodeURI(el.value));
+				}
+			});
+			if (pics.length) {
+				let images = JSON.parse(localStorage.getItem('images'));
+				lastId = 0;
+				for (let i in images) { if (lastId < images[i]['id']) { lastId = images[i]['id']; } }
+				pics.forEach(function(pic) {
+					images[++lastId] = {id: lastId, houseId: newHouse['id'], link: pic};
+				});
+				localStorage.setItem('images', JSON.stringify(images));
+				document.getElementById('page-info').insertAdjacentHTML('beforeend', "<br>new images added for the house");
+			}
 		});
 
 		app.newPickEvent();
@@ -219,7 +233,7 @@ console.log(this.user)
 
 	logreg (urlParams) {
 
-		let router = this;
+		let app = this;
 		//registration
 		document.getElementById('registration-form').addEventListener('submit', function(event) {
 			event.preventDefault();
@@ -249,8 +263,8 @@ console.log(this.user)
 				users[nextId + 1] = {id:nextId + 1, name: name, login: email, pass: pass};
 				localStorage.setItem('users', JSON.stringify(users));
 			}
-			let url = router.createURL(urlParams);
-			router.changePage(url, urlParams);
+			let url = app.createURL(urlParams);
+			app.changePage(url, urlParams);
 		});
 
 		//login
@@ -265,13 +279,12 @@ console.log(this.user)
 					user = users[u]; 
 				}
 			}
-			if (typeof user != 'object') {
+			if (typeof user != 'object' || user == null) {
 				document.getElementById('reg-login-info').innerHTML = "Wrong login or password. Fix and try again";
 				return false;
 			}
 
 			let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
-			console.log(typeof loggedInUsers);
 			if (typeof loggedInUsers != 'object' || loggedInUsers == null) {
 				loggedInUsers = {};
 			}
@@ -282,51 +295,49 @@ console.log(this.user)
 					let r = Math.random().toString(36).substring(10);
 					hash += r;
 				}
-				console.log(loggedInUsers);
 			} while (typeof loggedInUsers[hash] != 'undefined');
-			console.log (users, user)
 			loggedInUsers[hash] = user['id'];
 			sessionStorage.setItem('users', JSON.stringify(loggedInUsers));
 			document.cookie = "h=" + hash;
 
 			urlParams['p'] = '';
-			let url = router.createURL(urlParams);
-			router.changePage(url, urlParams);
+			let url = app.createURL(urlParams);
+			app.changePage(url, urlParams);
 		});
 	}
 
 	setHomesEvents (urlParams) {
-		let router = this;
+		let app = this;
 		document.getElementById('housesSortPrice').addEventListener('change', function(event){
 			urlParams['sortv'] = 'price';
 			urlParams['sortd'] = event.currentTarget.value;
-			let url = router.createURL(urlParams);
-			router.changePage(url, urlParams);
+			let url = app.createURL(urlParams);
+			app.changePage(url, urlParams);
 		});
 
 		document.getElementById('houses-filters-form').addEventListener('submit', function(event){
 			event.preventDefault();
-			urlParams = {};
+			urlParams = {p: urlParams['p']};
 			Array.from(document.querySelectorAll('#houses-filters-form input, #houses-filters-form select')).forEach(function(el){
 				urlParams[el.name] = el.value;
 			});
-			let url = router.createURL(urlParams);
-			router.changePage(url, urlParams);
+			let url = app.createURL(urlParams);
+			app.changePage(url, urlParams);
 		});
 
 		document.getElementById('houses-filters-clear').addEventListener('click', function(event){
 			event.preventDefault();
 			urlParams = {p: urlParams['p']};
-			let url = router.createURL(urlParams);
-			router.changePage(url, urlParams);
+			let url = app.createURL(urlParams);
+			app.changePage(url, urlParams);
 		});
 
 		Array.from(document.querySelectorAll("#pagination-box a")).forEach(link => {
 		    link.addEventListener('click', function(event) {
 		    	event.preventDefault();
 		    	let url = event.currentTarget.href
-		    	let urlParams = router.parseURL(url);
-		    	router.changePage(url, urlParams);
+		    	let urlParams = app.parseURL(url);
+		    	app.changePage(url, urlParams);
 		    });
 		});
 	}
@@ -365,7 +376,7 @@ console.log(this.user)
 					if (pcontent.indexOf(searchString) != -1) {
 						searchResult.push({
 							link: this.createURL({p: p}), 
-							title: this.pagesTitles[this.templates[p]]
+							title: this.pagesTitles[p]
 						});
 					}
 				}
@@ -394,12 +405,16 @@ console.log(this.user)
 	setPageHouses (urlParams) {
 
 		let houses = JSON.parse(localStorage.getItem('houses'));
+		let ownerId = false;
+		if (urlParams['p'] == 'owners_prop') {
+			ownerId = this.user['id'];
+		}
 		let housesForPage = [];
 		let sortv = 'id';
 		if (typeof urlParams['sortv'] != 'undefined') { sortv = urlParams['sortv']; }
 		let sortasc = true;
 		if (typeof urlParams['sortd'] != 'undefined' && urlParams['sortd'] == 'desc') { sortasc = false; }
-		document.getElementById('housesSortPrice').value =  ((sortasc) ? 'asc' : 'desc');
+		document.getElementById('housesSortPrice').value = (typeof urlParams['sortd'] != 'undefined' ? urlParams['sortd'] : "");
 
 		// filter and prepare to sort
 		for (let h in houses) {
@@ -414,7 +429,8 @@ console.log(this.user)
 				&&	(typeof urlParams['bathrmax'] == 'undefined' || urlParams['bathrmax'] == '' || houses[h]['bathrooms'] <= urlParams['bathrmax'])
 				&&	(typeof urlParams['yearbmin'] == 'undefined' || urlParams['yearbmin'] == '' || houses[h]['yearbuilt'] >= urlParams['yearbmin'])
 				&&	(typeof urlParams['yearbmax'] == 'undefined' || urlParams['yearbmax'] == '' || houses[h]['yearbuilt'] <= urlParams['yearbmax'])
-				&&	(typeof urlParams['dealtype'] == 'undefined' || urlParams['dealtype'] == '' || houses[h]['dealtype'] == urlParams['dealtype']) ) {
+				&&	(typeof urlParams['dealtype'] == 'undefined' || urlParams['dealtype'] == '' || houses[h]['dealtype'] == urlParams['dealtype'])
+				&&	(!ownerId || houses[h]['userid'] == ownerId) ) {
 					housesForPage.push([houses[h], houses[h][sortv]]);
 			}
 		}
@@ -500,10 +516,7 @@ console.log(this.user)
 
 
 window.onload = function() {
-	let router = new Router();
-	let urlParams = router.parseURL(window.location.href);
-	router.changePage(window.location.href, urlParams);
+	let app = new SPA();
+	let urlParams = app.parseURL(window.location.href);
+	app.changePage(window.location.href, urlParams);
 }
-
-
-	

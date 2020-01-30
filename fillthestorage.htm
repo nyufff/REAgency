@@ -35,11 +35,12 @@
 
 
         let users = {
-			1: {id:1, name: 'Fred Flintstone', login: 'fred@example.com', pass: 'stone'},
-            2: {id:2, name: 'Marta Spring', login: 'marta@example.com', pass: 'love'},
-            3: {id:3, name: 'Tiranosaurus Rez', login: 'rex@example.com', pass: 'meat'},
-            4: {id:4, name: 'Bob Pants', login: 'bob@example.com', pass: 'pants'},
-            5: {id:5, name: 'Nick White', login: 'nick@example.com', pass: 'bread'},
+			1: {id: 1, name: 'Fred Flintstone', login: 'fred@example.com', pass: 'stone'},
+            2: {id: 2, name: 'Marta Spring', login: 'marta@example.com', pass: 'love'},
+            3: {id: 3, name: 'Tiranosaurus Rez', login: 'rex@example.com', pass: 'meat'},
+            4: {id: 4, name: 'Bob Pants', login: 'bob@example.com', pass: 'pants'},
+            5: {id: 5, name: 'Nick White', login: 'nick@example.com', pass: 'bread'},
+            6: {id: 6, name: "qwerwqe", login: "222@4455.com.ua", pass: "sadfasdfs"}
 		};
         window.localStorage.setItem('users', JSON.stringify(users));
 
@@ -47,10 +48,10 @@
         	1 : {id: 1, userid: 1, dealtype: 'sale', zip: 98107, address: '925 NW 57th St', price: 1295000, area: 3600, bedrooms: 7, bathrooms: 3, floors: 2, yearbuilt: 1960, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	2: {id: 2, userid: 2, dealtype: 'sale', zip: 98125, address: '12552 35th Ave', price: 2200000, area: 6540, bedrooms: 12, bathrooms: 5, floors: 2, yearbuilt: 1967, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	3 : {id: 3, userid: 1, dealtype: 'rent', zip: 98121, address: '456 Lenora St', price: 3289, area: 899, bedrooms: 2, bathrooms: 2, floors: 1, yearbuilt: 2018, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
-        	4 : {id: 4, userid: 5, dealtype: 'rent', zip: 98101, address: '257 5th Ave', price:  1990, area: 533, bedrooms: 'Studio', bathrooms: 1, floors: 1, yearbuilt: 2019, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
+        	4 : {id: 4, userid: 5, dealtype: 'rent', zip: 98101, address: '257 5th Ave', price:  1990, area: 533, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 2019, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	5 : {id: 5, userid: 2, dealtype: 'sale', zip: 98119, address: '1234 Lake St', price: 9500000, area: 12393, bedrooms: 9, bathrooms: 6, floors: 2, yearbuilt: 1930, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	6 : {id: 6, userid: 1, dealtype: 'sale', zip: 98103, address: '85 Motor Pl', price: 1950000, area: 4853, bedrooms: 10, bathrooms: 6, floors: 2, yearbuilt: 1967, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
-        	7 : {id: 7, userid: 3, dealtype: 'rent', zip: 98122, address: '954 Pike St', price: 1377, area: 280, bedrooms: 'Studio', bathrooms: 1, floors: 1, yearbuilt: 2019, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
+        	7 : {id: 7, userid: 3, dealtype: 'rent', zip: 98122, address: '954 Pike St', price: 1377, area: 280, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 2019, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	8 : {id: 8, userid: 1, dealtype: 'rent', zip: 98122, address: '2049 34th Ave', price: 3799, area: 1261, bedrooms: 2, bathrooms: 2, floors: 1, yearbuilt: 2000, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	9 : {id: 9, userid: 1, dealtype: 'sale', zip: 98107, address: '2043 NW 60th St', price:  1700000, area: 1750, bedrooms: 4, bathrooms: 3, floors: 2, yearbuilt: 1990, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	10 : {id: 10, userid: 1, dealtype: 'sale', zip: 98107, address: '5218 5th Ave NW', price: 1400000, area: 3310, bedrooms: 5, bathrooms: 4, floors: 2, yearbuilt: 1927, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
@@ -62,7 +63,7 @@
         	16 : {id: 16, userid: 4, dealtype: 'rent', zip: 98106, address: '2200 Sw Barton St', price: 1865, area: 850, bedrooms: 2, bathrooms: 1, floors: 1, yearbuilt: 2017, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	17 : {id: 17, userid: 1, dealtype: 'sale', zip:98105 , address: '5750 35th Ave NE', price: 1100000, area: 2120, bedrooms: 4, bathrooms: 3, floors: 1, yearbuilt: 1924, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	18 : {id: 18, userid: 1, dealtype: 'rent', zip: 98122, address: '1222 Madison St', price: 2095, area: 763, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 2005, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
-        	19 : {id: 19, userid: 1, dealtype: 'rent', zip:98102 , address: '2037 Yale Ave', price: 1375, area: 270, bedrooms: 'Studio', bathrooms: 1, floors: 1, yearbuilt: 1998, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
+        	19 : {id: 19, userid: 1, dealtype: 'rent', zip:98102 , address: '2037 Yale Ave', price: 1375, area: 270, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 1998, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	20 : {id: 20, userid: 4, dealtype: 'sale', zip: 98117, address: '7504 24th Ave', price: 1375000, area: 3030, bedrooms:4 , bathrooms: 2, floors: 2, yearbuilt: 1942, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	21 : {id: 21, userid: 1, dealtype: 'rent', zip: 98122, address: '1315 Jefferson St', price: 1795, area: 600, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 1995, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	22 : {id: 22, userid: 4, dealtype: 'sale', zip: 98103, address: '3626 Woodland Park Ave', price: 4800000, area: 7290, bedrooms: 8, bathrooms: 7, floors: 2, yearbuilt: 1926, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
@@ -73,16 +74,16 @@
         	27 : {id: 27, userid: 1, dealtype: 'sale', zip: 98116, address: '847 42th Ave', price: 5900000, area: 14616, bedrooms: 20, bathrooms: 15, floors: 3, yearbuilt: 1965, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	28 : {id: 28, userid: 5, dealtype: 'sale', zip: 98103, address: '1135 93rd St', price: 1699000, area: 4660, bedrooms: 9, bathrooms: 6, floors: 2, yearbuilt: 1963, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	29 : {id: 29, userid: 5, dealtype: 'rent', zip: 98101, address: '1430 2nd Ave', price: 2500, area: 671, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 2004, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
-        	30 : {id: 30, userid: 1, dealtype: 'rent', zip: 98107, address: '1762 NW 59th St', price: 1095, area: 255, bedrooms: 'Studio', bathrooms: 1, floors: 1, yearbuilt: 2010, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
+        	30 : {id: 30, userid: 1, dealtype: 'rent', zip: 98107, address: '1762 NW 59th St', price: 1095, area: 255, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 2010, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	31 : {id: 31, userid: 3, dealtype: 'sale', zip: 98144, address: '3301 York Rd', price: 399000, area: 448, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 1921, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
-        	32 : {id: 32, userid: 2, dealtype: 'slae', zip: 98116, address: '1410 Alki Ave', price: 1200000, area: 1880, bedrooms: 4, bathrooms: 2, floors:2 , yearbuilt: 1984, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
+        	32 : {id: 32, userid: 2, dealtype: 'sale', zip: 98116, address: '1410 Alki Ave', price: 1200000, area: 1880, bedrooms: 4, bathrooms: 2, floors:2 , yearbuilt: 1984, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	33 : {id: 33, userid: 5, dealtype: 'rent', zip: 98122, address: '1212 Remington St', price: 1705, area: 550, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 1960, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	34 : {id: 34, userid: 5, dealtype: 'sale', zip: 98107, address: '5816 17th Ave', price: 1475000, area: 3440, bedrooms: 6, bathrooms: 4, floors: 2, yearbuilt: 1911, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	35 : {id: 35, userid: 3, dealtype: 'rent', zip: 98104, address: '600 7th Ave', price: 2724, area: 950, bedrooms: 2, bathrooms: 2, floors: 1, yearbuilt: 1977, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	36 : {id: 36, userid: 1, dealtype: 'rent', zip: 98122, address: '103 12th Ave', price: 3589, area: 1061, bedrooms: 2, bathrooms: 2, floors: 1, yearbuilt: 1980, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	37 : {id: 37, userid: 3, dealtype: 'rent', zip: 98125, address: '3055 140th St', price: 1190, area: 750, bedrooms: 1, bathrooms: 1 , floors: 1, yearbuilt: 1988, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
-        	38 : {id: 38, userid: 1, dealtype: 'rale', zip: 98103, address: '1308 38th St', price: 2250000, area: 5451, bedrooms: 10, bathrooms: 7, floors: 3, yearbuilt: 1909, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
-        	39 : {id: 39, userid: 5, dealtype: 'rale', zip: 98178, address: '5542 119th St', price: 899000, area: 3080, bedrooms: 8, bathrooms: 4, floors: 1, yearbuilt: 1942, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
+        	38 : {id: 38, userid: 1, dealtype: 'sale', zip: 98103, address: '1308 38th St', price: 2250000, area: 5451, bedrooms: 10, bathrooms: 7, floors: 3, yearbuilt: 1909, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
+        	39 : {id: 39, userid: 5, dealtype: 'sale', zip: 98178, address: '5542 119th St', price: 899000, area: 3080, bedrooms: 8, bathrooms: 4, floors: 1, yearbuilt: 1942, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	40 : {id: 40, userid: 2, dealtype: 'rent', zip: 98101, address: '1601 5th Ave', price: 1990, area: 533, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 2011, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	41 : {id: 41, userid: 1, dealtype: 'sale', zip: 98103, address: '3601 Corliss Ave', price: 1699000, area: 3270, bedrooms: 6, bathrooms: 3, floors: 3, yearbuilt: 1919, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
         	42 : {id: 42, userid: 3, dealtype: 'rent', zip: 98109, address: '1919 Queen Anne Ave', price: 1775, area: 536, bedrooms: 1, bathrooms: 1, floors: 1, yearbuilt: 1990, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus ornare suspendisse sed nisi lacus sed viverra. Imperdiet dui accumsan sit amet nulla facilisi morbi. Nullam non nisi est sit amet facilisis. Lectus urna duis convallis convallis tellus id interdum velit.'},
@@ -158,6 +159,7 @@
 
 	    <div id="home" data-name="page_home" class="page_element">
 			<div class="content">
+		    	<h1 id="page_title"></h1>
 				<div class="line line-wide"></div>
 				<div class="text">
 					<h1>Nobody does it better than Real Estate Agency.<br>So you'll never miss out</h1>
@@ -202,14 +204,6 @@
 								<input id="registration-form-pass" type="password" name="password" pattern="^.{7,}$" title="minimum 7 symbols" class="reg-input" placeholder=" " required>
 								<label class="reg-label">Your password</label>
 							</div>
-							<div class="form-group">
-								<input type="checkbox" id="ownerCheck">
-								<label for="ownerCheck">I am a landlord or industry professional</label>
-								<div class="form-group ownerInfo">
-									<label class="reg-label" diabled>Your phone</label>
-									<input type="tel" class="reg-phone" pattern="^\+1\s(\d{3}\s){2}\d{4}$" placeholder="+1 XXX XXX XXXX" diabled>
-								</div>
-							</div>
 							<button type="submit" form="registration-form" class="button reg-button">Create</button>
 						</form>
 						<span>Do you alredy have an account? </span> <label for="log" class="switch">Login here</label>
@@ -220,6 +214,7 @@
 
 		<div id="serv_owners" data-name="page_serv_owners" class="page_element">
 			<div class="content">
+				<h1 id="page_title"></h1>
 				<img class="homePic" src="media/2.png">
 				<div class="text">
 					<h1>Selling and leasing has never been easier</h1>
@@ -231,33 +226,56 @@
 					</p>
 				</div>
 				<div class="container container-filter">
-					<form id="add-house-form" action="#" class="form">
-						<select class="filters" name="dealtype" required>
-							<option value="0" disabled selected>Type of transaction</option>
-							<option value="1">Sale</option>
-							<option value="2">Rent out</option>
+					<form id="add-house-form" action="#" class="form" method="get">
+						<select id="dealtype" class="filters add-house-param" name="dealtype" required>
+							<option value="" disabled selected>Type of transaction</option>
+							<option value="sale">Sale</option>
+							<option value="rent">Rent out</option>
 						</select>
-						<input id="zip" class="filters thin" type="text" placeholder="Zip" maxlength="5" required>
-						<input id="address" class="filters wide" type="text" placeholder="Address" required>
-						<input id="floors" class="filters" type="number" min="1" placeholder="Number of floors" required>
-						<input id="bedrooms" class="filters" type="text" placeholder="Number of bedrooms" required>
-						<input id="bathrooms" class="filters" type="number" min="0" placeholder="Number of bathrooms" required>
-						<input id="area" class="filters" type="number" placeholder="Total area">
-						<input id="price" class="filters" type="text" placeholder="Price" required></input>
-						<input id="yearbuilt" class="filters" type="number" min="1800" maxlength="4" placeholder="Year built"></input>
-						<textarea id="descr" class="filters filter-descr" placeholder="Property description" rows="10" cols="30"></textarea>
-						<div id="add-house-pics" class="left">
-							<div class="add-house-new-pic"><input name="addpic" class="addpic filters wide" type="text" placeholder="Add picture"></div>
+
+						<label for="zip">Zip:
+							<input id="zip" name="zip" class="filters thin add-house-param" type="text" maxlength="5" required>
+						</label>
+						<label for="address">Address:
+							<input id="address" name="address" class="filters wide add-house-param" type="text"required>
+						</label>
+						<div class="block">
+							<label for="floors">Number of floors:
+								<input id="floors" name="floors" class="filters add-house-param" type="number" min="1" required>
+							</label>
+							<label for="bedrooms">Number of bedrooms:
+								<input id="bedrooms" name="bedrooms" class="filters add-house-param" type="text" required>
+							</label>
+							<label for="bathrooms">Number of bathrooms:
+								<input id="bathrooms" name="bathrooms" class="filters add-house-param" type="number" min="0" required>
+							</label>
 						</div>
+						<div class="block">
+							<label for="price">Price: 
+								<input id="price" name="price" class="filters add-house-param" type="text" required></input>
+							</label>
+							<label for="yearbuilt">Year built: 
+								<input id="yearbuilt" name="yearbuilt" class="filters add-house-param" type="number" min="1800" maxlength="4"></input>
+							</label>
+							<label for="area">Total area:
+								<input id="area" name="area" class="filters add-house-param" type="number">
+							</label>
+						</div>
+						<label for="description">Property description:</label>
+						<textarea id="description" name="description" class="filters filter-descr add-house-param" rows="10" cols="30"></textarea>
+						<div id="page-info" class="page_message"></div>
+						<div id="add-house-pics" class="left">
+							<div class="add-house-new-pic"><input name="addpic[]" class="addpic filters wide add-pic-param" type="text" placeholder="Add picture"></div>
+						</div>
+						<div><button id="add-prop" form="add-house-form" type="submit" class="button button-filter">Add</button></div>
 					</form>
-					<button id="add-prop" form="add-house-form" type="submit" class="button button-filter">Add</button>
 				 </div>
 			</div>
 		</div>
 
 		<div id="owners_prop" data-name="page_owners_prop" class="page_element">
 			<div class="content">
-				<h1>Your property</h1>
+				<h1 id="page_title"></h1>
 				<div id="templ" class=''>
 					<div class="card owner-card">
 						<div class="img-box">
@@ -290,6 +308,7 @@
 
 	    <div id="about_us" data-name="page_about_us" class="page_element">
 		    <div class="content">
+		    	<h1 id="page_title"></h1>
 				<img class="homePic" src="media/3.png" alt="house">
 				<div class="text">
 					<h1>We have been working successfully for you since 2000</h1>
@@ -344,6 +363,7 @@
 	    	
 	    <div id="services"  data-name="page_services" class="page_element">
 			<div class="content">
+				<h1 id="page_title"></h1>
 				<div class="box">
 					<div class="sq-serv">
 						<h2 class="h2">Buy or rent a home</h2>
@@ -385,10 +405,10 @@
 
 		<div id="serv_rent" data-name="page_serv_rent" class="page_element">
 			<div class="content">
+				<h1 id="page_title"></h1>
 				<div class="box">
-					<div class="container container-sideFilter">
+					<div class="container container-side-filter">
 						<form id="houses-filters-form" action="" class="form" method="GET">
-							<input type="hidden" name="p" value="serv_rent">
 							<select id="houses-filter-dealtype" class="filters" name="dealtype">
 								<option value="" disabled selected>Type of transaction</option>
 								<option value="sale">Sale</option>
@@ -419,9 +439,9 @@
 							<p class="label">Year built</p>
 							<div>
 								<label>From:</label>
-								<input id="houses-filter-yearbmin" class="filters short" type="number" name="yearbmin" step="1" min="0" max="10000000">
+								<input id="houses-filter-yearbmin" class="filters short" type="number" name="yearbmin" step="1" min="1900" max="2100">
 								<label>To:</label>
-								<input id="houses-filter-yearbmax" class="filters short" type="number" name="yearbmax" step="1" min="0" max="10000000">
+								<input id="houses-filter-yearbmax" class="filters short" type="number" name="yearbmax" step="1" min="1900" max="2100">
 							</div>
 							<p class="label">Price</p>
 							<div>
@@ -432,16 +452,15 @@
 							</div>
 						</form>
 						<button class="button button-filter" type="submit" form="houses-filters-form">Search</button>
-						<button id="houses-filters-clear" class="button button-filter" >Clear Filters</button>
+						<button id="houses-filters-clear" class="button button-filter" >Clear filters</button>
 					</div>
+
 					<div class="box-prop">
 						<div class="row">
-                            <div class="result">
-                                <p class="search-result"><span id="houses-found-counter">20</span> objects found</p>
-                            </div>
+							<p class="search-result"><span id="houses-found-counter">20</span> objects found</p>
                             <div class="sort">
 								<select id="housesSortPrice" class="filters" name="sort">
-									<option value="0">Sort</option>
+									<option value="">Sort</option>
 									<option value="asc">Low price to high</option>
 									<option value="desc">High price to low</option>
 								</select>
@@ -476,25 +495,25 @@
 								</div>
 							</div>
 						</div>
-						
 					</div>
-				</div>
-				<div id="pagination-box" class="pagination-box">
-					<ul class="pagin">
-						<li id="houses-pag-prev" class="button button-pagin hidden"><a class="link innerLink" href="" >&lt;</a></li>
-						<li id="houses-pag-num-1" class="button button-pagin hidden"><a class="link innerLink" href="">1</a></li>
-						<li id="houses-pag-num-2" class="button button-pagin hidden"><a class="link innerLink" href="">1</a></li>
-						<li id="houses-pag-num-self" class="button-pagin">1</li>
-						<li id="houses-pag-num-4" class="button button-pagin hidden"><a class="link innerLink" href="">1</a></li>
-						<li id="houses-pag-num-5" class="button button-pagin hidden"><a class="link innerLink" href="">1</a></li>
-						<li id="houses-pag-next" class="button button-pagin hidden"><a class="link innerLink" href="" >&gt;</a></li>
-					</ul>
+					<div id="pagination-box" class="pagination-box">
+						<ul class="pagin">
+							<li id="houses-pag-prev" class="button button-pagin hidden"><a class="link innerLink" href="" >&lt;</a></li>
+							<li id="houses-pag-num-1" class="button button-pagin hidden"><a class="link innerLink" href="">1</a></li>
+							<li id="houses-pag-num-2" class="button button-pagin hidden"><a class="link innerLink" href="">1</a></li>
+							<li id="houses-pag-num-self" class="button-pagin">1</li>
+							<li id="houses-pag-num-4" class="button button-pagin hidden"><a class="link innerLink" href="">1</a></li>
+							<li id="houses-pag-num-5" class="button button-pagin hidden"><a class="link innerLink" href="">1</a></li>
+							<li id="houses-pag-next" class="button button-pagin hidden"><a class="link innerLink" href="" >&gt;</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div id="prop_card" data-name="page_prop_card" class="page_element">
 			<div class="content">
+				<h1 id="page_title"></h1>
 				<div class="box">
 					<div class="text-box gallery-text-box">
 						<b><span class="zip">98122</span></b>
@@ -527,6 +546,7 @@
 
 		<div id="prop_manag" data-name="page_prop_manag" class="page_element">
 			<div class="content">
+				<h1 id="page_title"></h1>
 				<div class="box">
 					<div class="sq-manag">
 						<h2>Getting started</h2>
@@ -574,9 +594,9 @@
 
 		<div id="contacts" data-name="page_contacts" class="page_element">
 			<div class="content">
+				<h1 id="page_title"></h1>
 				<img class="homePic" src="media/4.png">
 				<div class="text">
-					<h1>Contact us</h1>
 					<p class="addr">
 						3217 Eastlake Ave E, of 201
 						Seattle
@@ -598,7 +618,7 @@
 
 		<div id='search' data-name="page_search" class="page_element">
 			<div class="content">
-			  <h3>Search results</h3>
+			  <h1 id="page_title"></h1>
 			  <ul id='search-results' class="search-res">
 				<li id="search-row-no-results" class="hidden">No results found</li>
 				<li id="search-results-row-template" class="hidden"><a class="inner-link" href="#"></a></li>
@@ -606,15 +626,16 @@
 			</div>
 		</div>
 		  
-		  <div id='404' data-name="page_404" class="page_element">
+		<div id='404' data-name="page_404" class="page_element">
 			<div class="content">
-			  <div id='content404'>
-				  <h3>404. Page not found</h3>
-				  <p>Sorry, we don't have this page. Try to use menu above to navigate to one of the pages we have</p>
-			  </div>
+			<h1 id="page_title"></h1>
+			  	<div id='content404'>
+				  	<p>Sorry, we don't have this page. Try to use menu above to navigate to one of the pages we have</p>
+			  	</div>
 			</div>
-		  </div>
+		</div>
 
   	</div>
+  	Local Storage is Updated
 </body>
 </html>

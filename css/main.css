@@ -47,10 +47,13 @@ body {
     background-color: rgb(180, 180, 173);
 }
 .button-filter {
-    margin: 2rem auto;
+    width: 6.5rem;
+    padding: .7rem .5rem;
+    margin: 1rem .5rem;
 }
 .button-prop {
     width: 10rem;
+    padding: .5rem;
     align-self: center;
     background-color: #e2effc;
     box-shadow: none;
@@ -62,6 +65,7 @@ body {
     line-height: 2rem;
     margin: 1rem 1rem 0 0;
     font-family: serif;
+    box-shadow: none;
 }
 .button-pagin .link {
     display: inline-block;
@@ -81,9 +85,10 @@ body {
 /*==================== Header ========================*/
 header {
     width: 100%;
+    min-height: 5rem;
     display: flex;
     flex-flow: column nowrap;
-    flex: 1 0 30%;
+    flex: 1 0 12%;
     overflow: hidden;
 }
 .header {
@@ -248,7 +253,7 @@ main {
 .form {
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: space-evenly;
     position: relative;
 }
@@ -286,15 +291,16 @@ main {
 }
 
 /*=================== Buy/Rent ====================*/
-.container-sideFilter {
+.container-side-filter {
     width: 20rem;
-    margin: 1%;
+    max-height: 32rem;
+    margin: 0 1%;
     color: #757575;
     font-family: serif;
 }
 .filters {
     width: 17rem;
-    height: 2.5rem;
+    height: 2rem;
     font: normal 110% serif;
     color: #757575;
     border-radius: 0.25em;
@@ -302,20 +308,20 @@ main {
     border: none;
     outline: none;
     padding: 0 2%;
-    margin: 1rem 0;
+    margin: .5rem 0;
 }
 .label {
     width: 95%;
-    font-size: 120%;
+    font-size: 110%;
 }
 .short {
     width: 6rem;
-    height: 2rem;
+    height: 1.8rem;
 }
 .box-prop {
     flex-grow: 1;
     max-width: 70%;
-    padding: 1%;
+    padding: 0 1rem;
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
@@ -323,58 +329,22 @@ main {
 }
 .row {
     width: 100%;
-    padding: 1%;
-    margin-bottom: 1rem;
+    padding: .5rem;
     background-color: #e2effc;
     display: flex;
     flex-flow: row wrap;
-    align-items: stretch;
-}
-.result {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    height: 4rem;
-    padding: 1%;
+    justify-content: space-between;
 }
 .search-result {
+    width: 60%;
     font-size: 150%;
     text-align: left;
-}
-.filter-list {
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-.list-item {
-    width: 8rem;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    list-style: none;
-    font: normal 110% serif;
-    background-color: white;
-    color:  #757575;
-    border: none;
-    border-radius: 0.25rem;
-    padding: 3% 2%;
-    margin: 1%;
-}
-.remove {
-    border: none;
-    text-shadow: none;
-    color: #757575;
-    font-size: 110%;
-    outline: none;
-    background-color: transparent;
+    padding: 1%;
 }
 .img-box {
     width: 300px;
     height: 300px;
     flex: none;
-    margin-bottom: 1%;
 }
 .img-prop {
     width: 100%;
@@ -384,19 +354,18 @@ main {
 }
 .prop {
     width: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
     display: flex;
     flex-flow: column wrap;
     justify-content: flex-start;
 }
 .card {
     width: 98%;
-    min-width: 800px;
+    min-width: 600px;
     display: flex;
-    flex-grow: 1;
     flex-flow: row nowrap;
-    padding: 1%;
-    margin: 1%;
+    padding: .5rem;
+    margin: .5rem;
     position: relative;
     border: 2px solid rgb(180, 180, 173);
 }
@@ -476,15 +445,21 @@ main {
 /*=================== For owners ==================*/
 .container-filter {
     width: 80%;
-    max-width: 62rem;
+    max-width: 60rem;
     padding: 2rem;
     margin: 2rem auto;
+}
+.block {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    margin: 1rem 0;
 }
 .thin {
     width: 7rem;
 }
 .wide {
-    width: 27rem;
+    width: 22rem;
 }
 .filter-descr {
     width: 94%;
@@ -494,6 +469,15 @@ main {
 .owner-card {
     width: 80%;
     margin: 1rem auto;
+}
+.delete-cross {
+    padding: 5px;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+.left {
+    text-align: left;
 }
 
 /*================ Property management ================*/
@@ -756,4 +740,12 @@ main {
 
 .left {
     text-align: left;
+}
+
+.add-house-new-pic {
+    width: 30em;
+}
+
+.page_message {
+    width: 100%;
 }
