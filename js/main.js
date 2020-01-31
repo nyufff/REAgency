@@ -510,6 +510,7 @@ class SPA {
 		if (typeof urlParams['sortd'] != 'undefined' && urlParams['sortd'] == 'desc') { sortasc = false; }
 		document.getElementById('housesSortPrice').value = (typeof urlParams['sortd'] != 'undefined' ? urlParams['sortd'] : "");
 
+
 		// filter and prepare to sort
 		for (let h in houses) {
 			if (
@@ -524,7 +525,7 @@ class SPA {
 				&&	(typeof urlParams['yearbmin'] == 'undefined' || urlParams['yearbmin'] == '' || houses[h]['yearbuilt'] >= urlParams['yearbmin'])
 				&&	(typeof urlParams['yearbmax'] == 'undefined' || urlParams['yearbmax'] == '' || houses[h]['yearbuilt'] <= urlParams['yearbmax'])
 				&&	(typeof urlParams['dealtype'] == 'undefined' || urlParams['dealtype'] == '' || houses[h]['dealtype'] == urlParams['dealtype'])
-				&&	(!ownerId || houses[h]['userid'] == ownerId) ) {
+				&&	(ownerId === false || (urlParams['p'] == 'serv_rent') || (urlParams['p'] == 'owners_prop' && ownerId == houses[h]['userid'])) ) {
 					housesForPage.push([houses[h], houses[h][sortv]]);
 			}
 		}
