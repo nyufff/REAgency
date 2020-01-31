@@ -355,7 +355,6 @@ main {
 }
 .prop {
     width: 100%;
-    overflow-y: scroll;
     display: flex;
     flex-flow: column wrap;
     justify-content: flex-start;

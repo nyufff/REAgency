@@ -3,6 +3,9 @@ class SPA {
 
 	constructor () {
 
+		this.user = {};
+		this.logged = false;
+
 		this.templates = {'': 'page_home', 'home': 'page_home', 'about_us': 'page_about_us',
 								'services': 'page_services', 'serv_rent': 'page_serv_rent', 'search': 'page_search',
 								'serv_owners': 'page_serv_owners', 'owners_prop': 'page_serv_rent', 
@@ -82,8 +85,6 @@ class SPA {
 	}
 
 	changePage(url, urlParams) {
-		this.previousUrl = window.location.href;
-		this.previousUrlParams = this.parseURL(window.location.href);
 		window.history.replaceState({}, "Title", url);
     	if (this.setTemplate(urlParams)) {
     		this.setPage(urlParams);
@@ -91,18 +92,23 @@ class SPA {
 	}
 
 
-	goBack() {
-		if (this.previousUrl != window.location.href) {
-			this.changePage(this.previousUrl, this.previousUrlParams);
-		}
+	logRegOff () {
+		document.getElementById('menu-link-reg-log').classList.add('hidden');
+		document.getElementById('meny-link-profile-logaut').classList.remove('hidden');
 	}
 
+	logRegOn () {
+		document.getElementById('menu-link-reg-log').classList.remove('hidden');
+		document.getElementById('meny-link-profile-logaut').classList.add('hidden');
+		this.user = {};
+	}
 
 	getUser() {
 		let cookies = document.cookie;
-		if (!cookies.length) { return false; }
+
+		if (!cookies.length) { this.logRegOn(); return false; }
 		let c1 = cookies.split(';');
-		if (!c1.length) { return false; }
+		if (!c1.length) { this.logRegOn(); return false; }
 
 		let hash = false;
 
@@ -115,16 +121,12 @@ class SPA {
 		let loggedInUsers = JSON.parse(sessionStorage.getItem('users'));
 
 		if (!hash || typeof loggedInUsers != 'object' || loggedInUsers == null || typeof loggedInUsers[hash] == 'undefined') {
-			document.getElementById('menu-link-reg-log').classList.remove('hidden');
-			document.getElementById('meny-link-profile-logaut').classList.add('hidden');
-			this.user = {};
-			return false;
+			this.logRegOn(); return false;
 		} else {
 			let users = JSON.parse(localStorage.getItem('users'));
 
 			if (typeof users[loggedInUsers[hash]] != 'undefined') {
-				document.getElementById('menu-link-reg-log').classList.add('hidden');
-				document.getElementById('meny-link-profile-logaut').classList.remove('hidden');
+				this.logRegOff();
 				this.user = users[loggedInUsers[hash]];
 			} else {
 				delete loggedInUsers[hash];
@@ -496,10 +498,9 @@ class SPA {
 
 
 	setPageHouses (urlParams) {
-
 		let houses = JSON.parse(localStorage.getItem('houses'));
 		let ownerId = false;
-		if (urlParams['p'] == 'owners_prop') {
+		if (typeof this.user['id'] != 'undefined') {
 			ownerId = this.user['id'];
 		}
 		let housesForPage = [];
@@ -570,7 +571,7 @@ class SPA {
 				prop.querySelector('.floors').innerHTML = housesForPage[i][0]['floors'];
 				prop.querySelector('.price').innerHTML = housesForPage[i][0]['price'];
 				prop.querySelector('.descr').innerHTML = housesForPage[i][0]['description'];
-				if (housesForPage[i][0]['userid'] == this.user['id']) {
+				if (housesForPage[i][0]['userid'] == ownerId) {
 					prop.querySelector('.houses-delete-property-btn').dataset['id'] = housesForPage[i][0]['id'];
 					prop.querySelector('.houses-delete-property-btn').dataset['origin'] = urlParams['p'];
 					prop.querySelector('.houses-delete-property-btn').classList.remove('hidden');
